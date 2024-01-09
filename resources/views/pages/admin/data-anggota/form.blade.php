@@ -2,7 +2,28 @@
 
 @section('content')
     <main class="content">
-        <div class="container-fluid p-0">
+        {{-- Breadrcumb --}}
+        <nav class="c-navigation-breadcrumbs">
+            <ol class="c-navigation-breadcrumbs__directory">
+
+                <li class="c-navigation-breadcrumbs__item">
+                    <a class="c-navigation-breadcrumbs__link" href="{{ route('data-anggota.member') }}">
+                        <span property="name">Data Anggota</span>
+                    </a>
+                </li>
+
+                <span class="me-2"> // </span>
+
+                <li class="c-navigation-breadcrumbs__item">
+                    <a class="c-navigation-breadcrumbs__link breadcrumb-active" href="#">
+                        <span property="name">Tambah Data</span>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+        {{-- Breadcrumb ends --}}
+
+        <div class="container-fluid p-0 mt-4">
             <div class="card shadow-lg">
                 <div class="card-header">
                     <h2 class="fw-bold">Tambah Data</h2>

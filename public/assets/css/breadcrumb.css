@@ -1,0 +1,34 @@
+.c-navigation-breadcrumbs {
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+}
+
+.c-navigation-breadcrumbs a {
+    text-decoration: none;
+}
+
+.c-navigation-breadcrumbs__directory {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.c-navigation-breadcrumbs__item {
+    margin-right: 10px;
+}
+
+.c-navigation-breadcrumbs__link {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.c-navigation-breadcrumbs__link:hover {
+    color: #007bff;
+}
+
+.breadcrumb-active {
+    color: #007bff;
+}
