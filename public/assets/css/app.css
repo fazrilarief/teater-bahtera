@@ -12168,7 +12168,7 @@ a.sidebar-link svg {
     display: block;
     font-size: 1.15rem;
     font-weight: 600;
-    padding: 1.15rem 1.5rem;
+    padding: 0;
 }
 .sidebar-brand:hover {
     color: #f8f9fa;

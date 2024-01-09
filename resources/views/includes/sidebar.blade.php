@@ -1,112 +1,90 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="index.html">
-            <span class="align-middle">AdminKit</span>
+        <a class="sidebar-brand d-flex justify-content-center" href="index.html">
+            <img src="{{ asset('assets/img/logos/logo_teater_bahtera.png') }}" alt="Teater Bahtera"
+                style="width: 80px; height: 65px">
         </a>
 
+        <hr class="mt-0">
         <ul class="sidebar-nav">
-            <li class="sidebar-header">Pages</li>
-
             <li class="sidebar-item active">
                 <a class="sidebar-link" href="index.html">
                     <i class="align-middle" data-feather="sliders"></i>
                     <span class="align-middle">Dashboard</span>
                 </a>
             </li>
+            <hr>
+
+            <li class="sidebar-header">Master Data</li>
+
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="pages-profile.html">
-                    <i class="align-middle" data-feather="user"></i>
-                    <span class="align-middle">Profile</span>
+                    <i class="align-middle" data-feather="users"></i>
+                    <span class="align-middle">Data Anggota</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="pages-sign-in.html">
-                    <i class="align-middle" data-feather="log-in"></i>
-                    <span class="align-middle">Sign In</span>
+                    <i class="align-middle" data-feather="box"></i>
+                    <span class="align-middle">Data Kriteria</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="pages-sign-up.html">
-                    <i class="align-middle" data-feather="user-plus"></i>
-                    <span class="align-middle">Sign Up</span>
+                    <i class="align-middle" data-feather="plus-square"></i>
+                    <span class="align-middle">Data Sub Kriteria</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="pages-blank.html">
-                    <i class="align-middle" data-feather="book"></i>
-                    <span class="align-middle">Blank</span>
+                    <i class="align-middle" data-feather="file-text"></i>
+                    <span class="align-middle">Data Alternatif</span>
                 </a>
             </li>
 
-            <li class="sidebar-header">Tools & Components</li>
+            <li class="sidebar-header">Perhitungan SMART</li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="ui-buttons.html">
-                    <i class="align-middle" data-feather="square"></i>
-                    <span class="align-middle">Buttons</span>
+                    <i class="align-middle" data-feather="edit"></i>
+                    <span class="align-middle">Penilaian Alternatif</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="ui-forms.html">
                     <i class="align-middle" data-feather="check-square"></i>
-                    <span class="align-middle">Forms</span>
+                    <span class="align-middle">Perhitungan</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="ui-cards.html">
-                    <i class="align-middle" data-feather="grid"></i>
-                    <span class="align-middle">Cards</span>
+                    <i class="align-middle" data-feather="bar-chart-2"></i>
+                    <span class="align-middle">Ranking</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-typography.html">
-                    <i class="align-middle" data-feather="align-left"></i>
-                    <span class="align-middle">Typography</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="icons-feather.html">
-                    <i class="align-middle" data-feather="coffee"></i>
-                    <span class="align-middle">Icons</span>
-                </a>
-            </li>
-
-            <li class="sidebar-header">Plugins & Addons</li>
+            <li class="sidebar-header">User</li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="charts-chartjs.html">
-                    <i class="align-middle" data-feather="bar-chart-2"></i>
-                    <span class="align-middle">Charts</span>
+                    <i class="align-middle" data-feather="user-check"></i>
+                    <span class="align-middle">Admin</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="maps-google.html">
-                    <i class="align-middle" data-feather="map"></i>
-                    <span class="align-middle">Maps</span>
+                    <i class="align-middle" data-feather="user-plus"></i>
+                    <span class="align-middle">Member</span>
                 </a>
             </li>
         </ul>
 
-        <div class="sidebar-cta">
-            <div class="sidebar-cta-content">
-                <strong class="d-inline-block mb-2">Upgrade to Pro</strong>
-                <div class="mb-3 text-sm">
-                    Are you looking for more components? Check out our premium
-                    version.
-                </div>
-                <div class="d-grid">
-                    <a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade to Pro</a>
-                </div>
-            </div>
-        </div>
     </div>
 </nav>
