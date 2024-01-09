@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" class="btn btn-primary">
+                            <a href="{{ route('data-anggota.form') }}" class="btn btn-primary">
                                 <i class="align-middle" data-feather="plus"></i> Tambah Data
                             </a>
                         </div>

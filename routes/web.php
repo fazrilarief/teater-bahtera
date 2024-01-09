@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('data-anggota/anggota', function () {
     return view('pages.admin.data-anggota.member');
 })->name('data-anggota.member');
+
+Route::get('data-anggota/tambah', function () {
+    return view('pages.admin.data-anggota.form');
+})->name('data-anggota.form');
