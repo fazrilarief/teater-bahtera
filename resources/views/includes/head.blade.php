@@ -13,5 +13,10 @@
 
 <title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 
+{{-- Datatables --}}
+<link rel="stylesheet" href="{{ asset('assets/vendor/DataTable/css/dataTable.bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/vendor/DataTable/css/dataTables.bootstrap5.min.css') }}">
+
+{{-- Own Styling --}}
 <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />

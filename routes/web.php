@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.admin.index');
-});
+})->name('dashboard');
+
+Route::get('data-anggota/anggota', function () {
+    return view('pages.admin.data-anggota.member');
+})->name('data-anggota.member');

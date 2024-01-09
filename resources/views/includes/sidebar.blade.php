@@ -7,8 +7,8 @@
 
         <hr class="mt-0">
         <ul class="sidebar-nav">
-            <li class="sidebar-item active">
-                <a class="sidebar-link" href="index.html">
+            <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('dashboard') }}">
                     <i class="align-middle" data-feather="sliders"></i>
                     <span class="align-middle">Dashboard</span>
                 </a>
@@ -17,9 +17,8 @@
 
             <li class="sidebar-header">Master Data</li>
 
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-profile.html">
+            <li class="sidebar-item {{ request()->routeIs('data-anggota.member') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('data-anggota.member') }}">
                     <i class="align-middle" data-feather="users"></i>
                     <span class="align-middle">Data Anggota</span>
                 </a>
