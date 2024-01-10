@@ -40,8 +40,8 @@
 
             <li class="sidebar-header">Perhitungan SMART</li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-buttons.html">
+            <li class="sidebar-item {{ request()->routeIs('penilaian-alternatif.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{route('penilaian-alternatif.assessment')}}">
                     <i class="align-middle" data-feather="edit"></i>
                     <span class="align-middle">Penilaian Alternatif</span>
                 </a>

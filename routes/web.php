@@ -40,3 +40,7 @@ Route::get('data-sub-kriteria', function () {
 Route::get('data-alternatif', function () {
     return view('pages.admin.data-alternatif.alternatif');
 })->name('data-alternatif.alternatif');
+
+Route::get('penilaian-alternatif/assessment', function () {
+    return view('pages.admin.penilaian-alternatif.assessment');
+})->name('penilaian-alternatif.assessment');
