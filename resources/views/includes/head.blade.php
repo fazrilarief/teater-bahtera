@@ -7,11 +7,11 @@
     content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web" />
 
 <link rel="preconnect" href="https://fonts.gstatic.com" />
-<link rel="shortcut icon" href="{{ asset('assets/img/icons/icon-48x48.png') }}" />
+<link rel="shortcut icon" href="{{ asset('assets/img/logos/logo_teater_bahtera.png') }}" />
 
 <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+<title>Teater Bahtera</title>
 
 {{-- Datatables --}}
 <link rel="stylesheet" href="{{ asset('assets/vendor/DataTable/css/dataTable.bootstrap.min.css') }}">
