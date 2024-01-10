@@ -17,7 +17,7 @@
 
             <li class="sidebar-header">Master Data</li>
 
-            <li class="sidebar-item {{ request()->routeIs('data-anggota.member') ? 'active' : '' }}">
+            <li class="sidebar-item {{ request()->routeIs('data-anggota.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('data-anggota.member') }}">
                     <i class="align-middle" data-feather="users"></i>
                     <span class="align-middle">Data Anggota</span>
