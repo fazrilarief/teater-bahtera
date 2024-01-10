@@ -41,14 +41,14 @@
             <li class="sidebar-header">Perhitungan SMART</li>
 
             <li class="sidebar-item {{ request()->routeIs('penilaian-alternatif.*') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{route('penilaian-alternatif.assessment')}}">
+                <a class="sidebar-link" href="{{ route('penilaian-alternatif.assessment') }}">
                     <i class="align-middle" data-feather="edit"></i>
                     <span class="align-middle">Penilaian Alternatif</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-forms.html">
+            <li class="sidebar-item {{ request()->routeIs('perhitungan.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('perhitungan.value-calculation') }}">
                     <i class="align-middle" data-feather="check-square"></i>
                     <span class="align-middle">Perhitungan</span>
                 </a>

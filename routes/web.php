@@ -44,3 +44,7 @@ Route::get('data-alternatif', function () {
 Route::get('penilaian-alternatif/assessment', function () {
     return view('pages.admin.penilaian-alternatif.assessment');
 })->name('penilaian-alternatif.assessment');
+
+Route::get('perhitungan', function () {
+    return view('pages.admin.perhitungan.value-calculation');
+})->name('perhitungan.value-calculation');
