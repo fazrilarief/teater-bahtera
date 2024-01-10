@@ -31,7 +31,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Jenis Kelamin</th>
                                 <th>Kelas</th>
                                 <th></th>
                             </tr>
@@ -40,7 +39,6 @@
                             <tr>
                                 <td>1. </td>
                                 <td>Fazril Arief Nugraha</td>
-                                <td>Wanita</td>
                                 <td>12 Mia 2</td>
                                 <td>
                                     <div class="text-nowrap">

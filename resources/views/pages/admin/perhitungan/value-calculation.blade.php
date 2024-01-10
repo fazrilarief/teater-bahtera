@@ -63,7 +63,7 @@
 
             {{-- Bobot Kriteria --}}
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-sm-12">
                     <div class="card shadow-lg">
                         <div class="card-header">
                             <h4>Bobot Kriteria</h4>
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-sm-12">
                     <div class="card shadow-lg">
                         <div class="card-header">
                             <h4>Normalisasi Bobot Kriteria</h4>
