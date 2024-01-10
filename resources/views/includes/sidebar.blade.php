@@ -38,13 +38,6 @@
                 </a>
             </li>
 
-            <li class="sidebar-item {{ request()->routeIs('data-alternatif.*') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{ route('data-alternatif.alternatif') }}">
-                    <i class="align-middle" data-feather="file-text"></i>
-                    <span class="align-middle">Data Alternatif</span>
-                </a>
-            </li>
-
             <li class="sidebar-header">Perhitungan SMART</li>
 
             <li class="sidebar-item">
