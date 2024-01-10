@@ -31,8 +31,8 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-up.html">
+            <li class="sidebar-item {{ request()->routeIs('data-sub-kriteria.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('data-sub-kriteria.sub-criteria') }}">
                     <i class="align-middle" data-feather="plus-square"></i>
                     <span class="align-middle">Data Sub Kriteria</span>
                 </a>
