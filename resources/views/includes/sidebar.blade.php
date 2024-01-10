@@ -54,8 +54,8 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-cards.html">
+            <li class="sidebar-item {{ request()->routeIs('perankingan.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('perankingan.rank') }}">
                     <i class="align-middle" data-feather="bar-chart-2"></i>
                     <span class="align-middle">Ranking</span>
                 </a>

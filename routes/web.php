@@ -48,3 +48,7 @@ Route::get('penilaian-alternatif/assessment', function () {
 Route::get('perhitungan', function () {
     return view('pages.admin.perhitungan.value-calculation');
 })->name('perhitungan.value-calculation');
+
+Route::get('perankingan', function () {
+    return view('pages.admin.perankingan.rank');
+})->name('perankingan.rank');
