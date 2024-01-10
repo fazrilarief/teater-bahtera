@@ -36,3 +36,7 @@ Route::get('data-kriteria/tambah-kriteria', function () {
 Route::get('data-sub-kriteria', function () {
     return view('pages.admin.data-sub-kriteria.sub-criteria');
 })->name('data-sub-kriteria.sub-criteria');
+
+Route::get('data-alternatif', function () {
+    return view('pages.admin.data-alternatif.alternatif');
+})->name('data-alternatif.alternatif');
