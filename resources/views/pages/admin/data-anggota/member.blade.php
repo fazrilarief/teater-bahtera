@@ -17,7 +17,7 @@
 
                 <li class="c-navigation-breadcrumbs__item">
                     <a class="c-navigation-breadcrumbs__link breadcrumb-active" href="{{ route('data-anggota.member') }}">
-                        <span property="name">Tambah Data</span>
+                        <span property="name">Data Anggota</span>
                     </a>
                 </li>
             </ol>

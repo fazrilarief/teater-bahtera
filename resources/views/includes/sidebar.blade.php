@@ -24,8 +24,8 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-sign-in.html">
+            <li class="sidebar-item sidebar-item {{ request()->routeIs('data-kriteria.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('data-kriteria.criteria') }}">
                     <i class="align-middle" data-feather="box"></i>
                     <span class="align-middle">Data Kriteria</span>
                 </a>

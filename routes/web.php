@@ -21,6 +21,14 @@ Route::get('data-anggota/anggota', function () {
     return view('pages.admin.data-anggota.member');
 })->name('data-anggota.member');
 
-Route::get('data-anggota/tambah', function () {
+Route::get('data-anggota/tambah-anggota', function () {
     return view('pages.admin.data-anggota.form');
 })->name('data-anggota.form');
+
+Route::get('data-kriteria/kriteria', function () {
+    return view('pages.admin.data-kriteria.criteria');
+})->name('data-kriteria.criteria');
+
+Route::get('data-kriteria/tambah-kriteria', function () {
+    return view('pages.admin.data-kriteria.form');
+})->name('data-kriteria.form');
