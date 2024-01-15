@@ -61,6 +61,15 @@
                 </a>
             </li>
 
+            <li class="sidebar-header">Tool</li>
+
+            <li class="sidebar-item {{ request()->routeIs('data-anggota.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('data-anggota.member') }}">
+                    <i class="align-middle" data-feather="bell"></i>
+                    <span class="align-middle">Buat Pengumuman</span>
+                </a>
+            </li>
+
             <li class="sidebar-header">User</li>
 
             <li class="sidebar-item">
