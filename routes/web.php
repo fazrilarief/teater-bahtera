@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('data-anggota', MemberController::class)
+    ->names([
+        'index' => 'data-anggota.member',
+        'create' => 'data-anggota.form',
+    ]);
+
+
 Route::get('/', function () {
     return view('pages.admin.index');
 })->name('dashboard');
 
-Route::get('data-anggota', function () {
-    return view('pages.admin.data-anggota.member');
-})->name('data-anggota.member');
+// Route::get('data-anggota', function () {
+//     return view('pages.admin.data-anggota.member');
+// })->name('data-anggota.member');
 
-Route::get('data-anggota/tambah-anggota', function () {
-    return view('pages.admin.data-anggota.form');
-})->name('data-anggota.form');
+// Route::get('data-anggota/tambah-anggota', function () {
+//     return view('pages.admin.data-anggota.form');
+// })->name('data-anggota.form');
 
 Route::get('data-kriteria', function () {
     return view('pages.admin.data-kriteria.criteria');
