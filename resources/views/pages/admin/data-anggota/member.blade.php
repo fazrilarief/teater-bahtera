@@ -35,7 +35,7 @@
                             </a>
                         </div>
                         <div class="col-6 d-flex justify-content-end gap-2">
-                            <a href="#" class="btn btn-success">
+                            <a href="{{ route('data-anggota.export') }}" class="btn btn-success">
                                 <i class="align-middle" data-feather="arrow-down-circle"></i> Export
                             </a>
                             <a href="#" class="btn btn-info">

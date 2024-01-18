@@ -20,6 +20,7 @@ Route::resource('data-anggota', MemberController::class)
         'create' => 'data-anggota.form',
     ]);
 
+Route::get('export/excel/', [MemberController::class, 'export'])->name('data-anggota.export');
 
 Route::get('/', function () {
     return view('pages.admin.index');

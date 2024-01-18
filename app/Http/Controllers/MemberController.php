@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MembersExport;
 use App\Http\Requests\MemberRequest;
 use App\Models\Member;
-use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MemberController extends Controller
 {
@@ -109,5 +110,13 @@ class MemberController extends Controller
         } else {
             return abort(500); // Pesan kesalahan spesifik
         }
+    }
+
+    /**
+     * Export File
+     */
+    public function export()
+    {
+        return Excel::download(new MembersExport, 'Data Aggota Teater Bahtera - ' . now()->format('Y-m-d H:i:s') . '.xlsx');
     }
 }
