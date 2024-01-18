@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->enum('gender', ['Pria', 'Wanita']);
             $table->string('code')->unique();
-            $table->integer('nis')->nullable();
-            $table->integer('nisn')->nullable();
-            $table->string('whatsapp');
+            $table->bigInteger('nis')->nullable();
+            $table->bigInteger('nisn')->nullable();
+            $table->bigInteger('whatsapp');
             $table->string('email')->nullable();
             $table->datetime('birthday');
             $table->integer('grade');
