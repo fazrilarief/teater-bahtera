@@ -243,21 +243,21 @@
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="nis" class="form-label">NIS</label>
-                                                                <input type="number" name="nis" class="form-control"
-                                                                    placeholder="3412*******" required
-                                                                    value="{{ old('nis', $member->nis) }}">
+                                                                <input type="number" id="nis" name="nis"
+                                                                    class="form-control" placeholder="3412*******"
+                                                                    required value="{{ old('nis', $member->nis) }}">
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="nisn" class="form-label">NISN</label>
-                                                                <input type="number" name="nisn" class="form-control"
-                                                                    placeholder="006*******" required
+                                                                <input type="number" id="nisn" name="nisn"
+                                                                    class="form-control" placeholder="006*******" required
                                                                     value="{{ old('nisn', $member->nisn) }}">
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="whatsapp" class="form-label">
                                                                     No Whatsapp
                                                                 </label>
-                                                                <input type="number" name="whatsapp"
+                                                                <input type="number" id="whatsapp" name="whatsapp"
                                                                     class="form-control" placeholder="08821313148"
                                                                     value="{{ old('whatsapp', $member->whatsapp) }}">
                                                             </div>
