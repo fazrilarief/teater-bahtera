@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\MembersExport;
 use App\Http\Requests\MemberRequest;
 use App\Models\Member;
+use App\Exports\MembersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MemberController extends Controller
 {
@@ -44,6 +45,7 @@ class MemberController extends Controller
 
         // Validasi apakah proses berjalan dengan baik atau tidak
         if ($member) {
+            Alert::success('Success', 'Berhasil Menambahkan Data');
             return redirect()->route('data-anggota.member');
         }
 
@@ -86,6 +88,7 @@ class MemberController extends Controller
 
         // Periksa apakah pembaruan berhasil
         if ($update) {
+            Alert::success('Success', 'Berhasil Merubah Data');
             return redirect()->route('data-anggota.member');
         } else {
             return abort(500);
@@ -106,6 +109,7 @@ class MemberController extends Controller
 
         // Validasi method $delete
         if ($delete) {
+            Alert::Warning('Warning', 'Berhasil Menghapus Data');
             return redirect()->route('data-anggota.member');
         } else {
             return abort(500); // Pesan kesalahan spesifik

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CriteriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,17 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('pages.admin.index');
+})->name('dashboard');
+
 Route::resource('data-anggota', MemberController::class)
     ->names([
         'index' => 'data-anggota.member',
         'create' => 'data-anggota.form',
     ]);
-
 Route::get('export/excel/', [MemberController::class, 'export'])->name('data-anggota.export');
 
-Route::get('/', function () {
-    return view('pages.admin.index');
-})->name('dashboard');
+Route::resource('data-kriteria', CriteriaController::class)
+    ->names([
+        'index' => 'data-kriteria.criteria'
+    ]);
 
 // Route::get('data-anggota', function () {
 //     return view('pages.admin.data-anggota.member');
@@ -34,9 +39,9 @@ Route::get('/', function () {
 //     return view('pages.admin.data-anggota.form');
 // })->name('data-anggota.form');
 
-Route::get('data-kriteria', function () {
-    return view('pages.admin.data-kriteria.criteria');
-})->name('data-kriteria.criteria');
+// Route::get('data-kriteria', function () {
+//     return view('pages.admin.data-kriteria.criteria');
+// })->name('data-kriteria.criteria');
 
 Route::get('data-kriteria/tambah-kriteria', function () {
     return view('pages.admin.data-kriteria.form');
