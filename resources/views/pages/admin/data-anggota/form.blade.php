@@ -36,15 +36,6 @@
                     <h2 class="fw-bold">Tambah Data</h2>
                 </div>
                 <div class="card-body">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <form action="{{ route('data-anggota.store') }}" method="POST">
                         @csrf
                         <div class="row">
@@ -53,6 +44,11 @@
                                     <label for="name" class="form-label">Nama Lengkap</label>
                                     <input type="text" name="name" class="form-control" autofocus>
                                 </div>
+                                @error('name')
+                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                            data-feather="alert-circle"></i> {{ $message }}
+                                    </div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="gender" class="form-label">Jenis Kelamin</label>
                                     <select name="gender" id="gender" class="form-select">
@@ -61,6 +57,11 @@
                                         <option value="Wanita">Wanita</option>
                                     </select>
                                 </div>
+                                @error('gender')
+                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                            data-feather="alert-circle"></i> {{ $message }}
+                                    </div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="nis" class="form-label">NIS</label>
                                     <input type="number" id="nis" name="nis" class="form-control"
@@ -76,6 +77,11 @@
                                     <input type="number" id="whatsapp" name="whatsapp" class="form-control"
                                         placeholder="08821313148">
                                 </div>
+                                @error('whatsapp')
+                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                            data-feather="alert-circle"></i> {{ $message }}
+                                    </div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" name="email" class="form-control"
@@ -85,8 +91,13 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="birthday" class="form-label">Tanggal Lahir</label>
-                                    <input type="date" name="birthday" class="form-control" required>
+                                    <input type="date" name="birthday" class="form-control">
                                 </div>
+                                @error('birthday')
+                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                            data-feather="alert-circle"></i> {{ $message }}
+                                    </div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="grade" class="form-label">Kelas</label>
                                     <select name="grade" id="grade" class="form-select">
@@ -96,6 +107,11 @@
                                         <option value="12">12</option>
                                     </select>
                                 </div>
+                                @error('grade')
+                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                            data-feather="alert-circle"></i> {{ $message }}
+                                    </div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="major" class="form-label">Jurusan</label>
                                     <select name="major" id="major" class="form-select">
@@ -106,6 +122,11 @@
                                         <option value="Belum Memiliki Jurusan">Belum Memiliki Jurusan</option>
                                     </select>
                                 </div>
+                                @error('major')
+                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                            data-feather="alert-circle"></i> {{ $message }}
+                                    </div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="class_code" class="form-label">Kode Kelas</label>
                                     <select name="class_code" id="class-code" class="form-select">
@@ -117,6 +138,24 @@
                                         @endfor
                                     </select>
                                 </div>
+                                @error('class_code')
+                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                            data-feather="alert-circle"></i> {{ $message }}
+                                    </div>
+                                @enderror
+                                <div class="mb-3">
+                                    <label for="structure" class="form-label">Kepanitiaan</label>
+                                    <select name="structure" id="grade" class="form-select">
+                                        <option selected disabled>Jabatan</option>
+                                        <option value="Anggota">Anggota</option>
+                                        <option value="Pengurus">Pengurus</option>
+                                    </select>
+                                </div>
+                                @error('structure')
+                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                            data-feather="alert-circle"></i> {{ $message }}
+                                    </div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="interest" class="form-label">Minat Seni</label>
                                     <select name="interest" id="grade" class="form-select">
@@ -127,14 +166,11 @@
                                         <option value="Monolog">Monolog</option>
                                     </select>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="structure" class="form-label">Kepanitiaan</label>
-                                    <select name="structure" id="grade" class="form-select">
-                                        <option selected disabled>Jabatan</option>
-                                        <option value="Anggota">Anggota</option>
-                                        <option value="Pengurus">Pengurus</option>
-                                    </select>
-                                </div>
+                                @error('interest')
+                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                            data-feather="alert-circle"></i> {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
