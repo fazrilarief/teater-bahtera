@@ -28,6 +28,9 @@
         <div class="container-fluid p-0 mt-4">
             <div class="card shadow-lg">
                 <div class="card-header">
+                    <h1 class="card-title mb-0">Data Anggota</h1>
+                </div>
+                <div class="card-header pt-0">
                     <div class="row">
                         <div class="col-6">
                             <a href="{{ route('data-anggota.form') }}" class="btn btn-primary">

@@ -26,6 +26,9 @@
         <div class="container-fluid pt-0 mt-4">
             <div class="card shadow-lg">
                 <div class="card-header">
+                    <h1 class="card-title mb-0">Data Kriteria</h1>
+                </div>
+                <div class="card-header pt-0">
                     <div class="row">
                         <div class="col-6">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"

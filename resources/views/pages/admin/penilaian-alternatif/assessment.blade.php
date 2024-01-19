@@ -25,6 +25,9 @@
 
         <div class="container-fluid p-0 mt-4">
             <div class="card shadow-lg">
+                <div class="card-header">
+                    <h1 class="card-title mb-0">Penilaian</h1>
+                </div>
                 <div class="card-body table-responsive">
                     <table id="myTable" class="table table-responsive table-hover my-0">
                         <thead>

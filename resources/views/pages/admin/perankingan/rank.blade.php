@@ -28,7 +28,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                            <h4>Ranking</h4>
+                            <h1 class="card-title mb-0">Hasil Ranking</h1>
                         </div>
                         <div class="col-6 d-flex justify-content-end">
                             <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"
