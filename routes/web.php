@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\SubCriteriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,11 @@ Route::resource('data-kriteria', CriteriaController::class)
         'index' => 'data-kriteria.criteria'
     ]);
 
+Route::resource('data-sub-criteria', SubCriteriaController::class)
+    ->names([
+        'index' => 'data-sub-kriteria.sub-criteria',
+    ]);
+
 // Route::get('data-anggota', function () {
 //     return view('pages.admin.data-anggota.member');
 // })->name('data-anggota.member');
@@ -47,9 +53,9 @@ Route::get('data-kriteria/tambah-kriteria', function () {
     return view('pages.admin.data-kriteria.form');
 })->name('data-kriteria.form');
 
-Route::get('data-sub-kriteria', function () {
-    return view('pages.admin.data-sub-kriteria.sub-criteria');
-})->name('data-sub-kriteria.sub-criteria');
+// Route::get('data-sub-kriteria', function () {
+//     return view('pages.admin.data-sub-kriteria.sub-criteria');
+// })->name('data-sub-kriteria.sub-criteria');
 
 Route::get('data-alternatif', function () {
     return view('pages.admin.data-alternatif.alternatif');

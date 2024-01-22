@@ -9,6 +9,7 @@ class Criteria extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
     protected $fillable = [
         'criteria_code',
         'criteria_name',
