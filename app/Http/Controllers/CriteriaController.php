@@ -43,9 +43,6 @@ class CriteriaController extends Controller
         $validated = $request->validated();
 
         $criteria = Criteria::findOrFail($id);
-        if (!$criteria) {
-            return abort(404);
-        }
 
         $update = $criteria->update($validated);
         if ($update) {

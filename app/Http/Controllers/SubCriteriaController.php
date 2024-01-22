@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SubCriteriaRequest;
 use App\Models\Criteria;
 use App\Models\SubCriteria;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SubCriteriaController extends Controller
 {
@@ -37,6 +38,7 @@ class SubCriteriaController extends Controller
         $subCriteria = SubCriteria::create($validated);
 
         if ($subCriteria) {
+            Alert::success('Sukses', 'Data sub kriteria berhasil ditambahkan');
             return redirect()->route('data-sub-kriteria.sub-criteria');
         } else {
             return abort(500);
@@ -62,9 +64,20 @@ class SubCriteriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SubCriteriaRequest $request, string $id)
     {
-        //
+        $validated = $request->validated();
+
+        $subCriteria = SubCriteria::findOrFail($id);
+
+        $update = $subCriteria->update($validated);
+
+        if ($update) {
+            Alert::success('Sukses', 'Data sudah berhasil diubah');
+            return redirect()->route('data-sub-kriteria.sub-criteria');
+        } else {
+            return abort(500);
+        }
     }
 
     /**
@@ -72,6 +85,15 @@ class SubCriteriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $delete = SubCriteria::findOrFail($id);
+
+        $delete->delete();
+
+        if ($delete) {
+            Alert::warning('Warning', 'Anda baru saja menghapus sebuah data!');
+            return redirect()->route('data-sub-kriteria.sub-criteria');
+        } else {
+            return abort(500);
+        }
     }
 }

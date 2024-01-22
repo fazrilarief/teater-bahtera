@@ -32,8 +32,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" data-bs-toggle="modal"
-                                    data-bs-target="#tambahData{{ $criteria->id }}" href="{{ route('data-kriteria.form') }}"
-                                    class="btn btn-primary">
+                                    data-bs-target="#tambahData{{ $criteria->id }}" class="btn btn-primary">
                                     <i class="align-middle" data-feather="plus"></i> Tambah Data
                                 </button>
                             </div>
@@ -66,12 +65,23 @@
                                                 <td>{{ $subCriteria->sub_criteria_name }}</td>
                                                 <td>{{ $subCriteria->sub_criteria_value }}</td>
                                                 <td>
-                                                    <div class="text-nowrap">
-                                                        <div class="btn btn-warning btn-sm">
-                                                            <i class="align-middle" data-feather="edit"></i>
-                                                        </div>
-                                                        <div class="btn btn-danger btn-sm">
-                                                            <i class="align-middle" data-feather="trash"></i>
+                                                    <div class="row">
+                                                        <div class="col d-flex justify-content-end">
+                                                            <button type="button" data-bs-toggle="modal"
+                                                                data-bs-target="#editData{{ $subCriteria->id }}"
+                                                                class="btn btn-warning btn-sm">
+                                                                <i class="align-middle" data-feather="edit"></i>
+                                                            </button>
+                                                            <form
+                                                                action="{{ route('data-sub-criteria.destroy', $subCriteria->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                                    onclick="return confirm('Data akan dihapus?')">
+                                                                    <i class="align-middle" data-feather="trash"></i>
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -129,48 +139,60 @@
                 {{-- Modal Tambah Sub Kriteria Ends --}}
 
                 {{-- Modal Edit Sub Kriteria --}}
-                <div class="modal fade" id="tambahData{{ $criteria->id }}" data-bs-backdrop="static"
-                    data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="staticBackdropSubKriteriaLabel{{ $criteria->id }}" aria-hidden="true">
-                    <div class="modal-dialog bg-primary">
-                        <div class="modal-content">
-                            <form action="{{ route('data-sub-criteria.store') }}" method="POST">
-                                @csrf
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel{{ $criteria->id }}">
-                                        Sub Kriteria untuk : <strong>{{ $criteria->criteria_name }}</strong>
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="mb-3">
-                                                <label for="criterias_id" class="form-label">ID Kriteria</label>
-                                                <input type="number" name="criterias_id" class="form-control"
-                                                    value="{{ $criteria->id }}" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="sub_criteria_name" class="form-label">Nama Sub
-                                                    Kriteria</label>
-                                                <input type="text" name="sub_criteria_name" class="form-control"
-                                                    autofocus>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="sub_criteria_value" class="form-label">Nilai Bobot</label>
-                                                <input type="number" name="sub_criteria_value" class="form-control">
+                @foreach ($subCriterias as $subCriteria)
+                    @if ($subCriteria->criterias_id === $criteria->id)
+                        <div class="modal fade" id="editData{{ $subCriteria->id }}" data-bs-backdrop="static"
+                            data-bs-keyboard="false" tabindex="-1"
+                            aria-labelledby="staticBackdropSubKriteriaLabel{{ $subCriteria->id }}" aria-hidden="true">
+                            <div class="modal-dialog bg-primary">
+                                <div class="modal-content">
+                                    <form action="{{ route('data-sub-criteria.update', $subCriteria->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel{{ $subCriteria->id }}">
+                                                Edit Sub Kriteria : <strong>{{ $criteria->criteria_name }}</strong>
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="mb-3">
+                                                        <label for="criterias_id" class="form-label">ID Kriteria</label>
+                                                        <input type="number" name="criterias_id" class="form-control"
+                                                            value="{{ $criteria->id }}" readonly>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="sub_criteria_name" class="form-label">
+                                                            Nama Sub Kriteria
+                                                        </label>
+                                                        <input type="text" name="sub_criteria_name"
+                                                            class="form-control" autofocus
+                                                            value="{{ old('sub_criteria_name', $subCriteria->sub_criteria_name) }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="sub_criteria_value" class="form-label">Nilai
+                                                            Bobot</label>
+                                                        <input type="number" name="sub_criteria_value"
+                                                            class="form-control"
+                                                            value="{{ old('sub_criteria_value', $subCriteria->sub_criteria_value) }}">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
+
                 {{-- Modal Edit Sub Kriteria Ends --}}
             @empty
                 <div class="card shadow-lg mt-4">
