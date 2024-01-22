@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('sub_criteria_name');
             $table->string('sub_criteria_value');
-            $table->unsignedInteger('criterias_id');
+            $table->unsignedBigInteger('criterias_id');
+            $table->foreign('criterias_id')->references('id')->on('criterias');
             $table->softDeletes();
             $table->timestamps();
         });
