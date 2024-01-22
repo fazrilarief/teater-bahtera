@@ -22,10 +22,10 @@ class CriteriaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required|string',
-            'name' => 'required|string',
-            'bobot_nilai' => 'required|integer',
-            'jenis' => 'required|in:Benefit,Cost',
+            'criteria_code' => 'required|string',
+            'criteria_name' => 'required|string',
+            'criteria_value' => 'required|integer',
+            'category' => 'required|in:Benefit,Cost',
         ];
     }
 }

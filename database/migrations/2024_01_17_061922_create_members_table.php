@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('member_name');
             $table->enum('gender', ['Pria', 'Wanita']);
-            $table->string('code')->unique();
+            $table->string('member_code')->unique();
             $table->bigInteger('nis')->nullable();
             $table->bigInteger('nisn')->nullable();
             $table->bigInteger('whatsapp');

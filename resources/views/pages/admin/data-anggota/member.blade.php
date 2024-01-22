@@ -79,8 +79,8 @@
                             @foreach ($members as $member)
                                 <tr>
                                     <td>{{ $number++ }} </td>
-                                    <td>{{ $member->name }}</td>
-                                    <td>{{ $member->code }}</td>
+                                    <td>{{ $member->member_name }}</td>
+                                    <td>{{ $member->member_code }}</td>
                                     <td>{{ $member->nisn }}</td>
                                     <td>{{ $member->gender }}</td>
                                     <td>{{ $member->grade . ' ' . $member->major . ' ' . $member->class_code }}</td>
@@ -127,7 +127,7 @@
                                                 <dl class="row">
                                                     <dt class="col-sm-3">Nama</dt>
                                                     <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->name }}</dd>
+                                                    <dd class="col-sm-8">{{ $member->member_name }}</dd>
 
                                                     <dt class="col-sm-3">Jenis Kelamin</dt>
                                                     <dt class="col-sm-1">:</dt>
@@ -135,7 +135,7 @@
 
                                                     <dt class="col-sm-3">Code</dt>
                                                     <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->code }}</dd>
+                                                    <dd class="col-sm-8">{{ $member->member_code }}</dd>
 
                                                     <dt class="col-sm-3">NIS</dt>
                                                     <dt class="col-sm-1">:</dt>
@@ -218,11 +218,12 @@
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <div class="mb-3">
-                                                                <label for="name" class="form-label">
+                                                                <label for="member_name" class="form-label">
                                                                     Nama Lengkap
                                                                 </label>
-                                                                <input type="text" name="name" class="form-control"
-                                                                    autofocus value="{{ old('name', $member->name) }}">
+                                                                <input type="text" name="member_name"
+                                                                    class="form-control" autofocus
+                                                                    value="{{ old('member_name', $member->member_name) }}">
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="gender" class="form-label">

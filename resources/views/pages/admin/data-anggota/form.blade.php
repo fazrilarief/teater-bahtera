@@ -32,6 +32,15 @@
 
         <div class="container-fluid p-0 mt-4">
             <div class="card shadow-lg">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-header">
                     <h2 class="fw-bold">Tambah Data</h2>
                 </div>
@@ -42,7 +51,7 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nama Lengkap</label>
-                                    <input type="text" name="name" class="form-control" autofocus
+                                    <input type="text" name="member_name" class="form-control" autofocus
                                         value="{{ old('name') }}">
                                 </div>
                                 @error('name')

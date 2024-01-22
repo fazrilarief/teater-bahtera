@@ -22,7 +22,7 @@ class MemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'member_name' => 'required|string',
             'gender' => 'required|in:Pria,Wanita',
             // 'code' => 'required|unique:members,code',
             'nis' => 'nullable',

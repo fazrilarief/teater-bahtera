@@ -66,10 +66,10 @@
                             @foreach ($criterias as $criteria)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $criteria->code }}</td>
-                                    <td>{{ $criteria->name }}</td>
-                                    <td>{{ $criteria->bobot_nilai }}</td>
-                                    <td>{{ $criteria->jenis }}</td>
+                                    <td>{{ $criteria->criteria_code }}</td>
+                                    <td>{{ $criteria->criteria_name }}</td>
+                                    <td>{{ $criteria->criteria_value }}</td>
+                                    <td>{{ $criteria->category }}</td>
                                     <td>
                                         <div class="row">
                                             <div class="col d-flex justify-content-end gap-2">
@@ -112,64 +112,77 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="mb-3">
-                                                                <label for="code" class="form-label">Kode
+                                                                <label for="criteria_code" class="form-label">Kode
                                                                     Kriteria</label>
-                                                                <select name="code" class="form-select">
+                                                                <select name="criteria_code" class="form-select">
                                                                     <option selected disabled>Pilih Kode Kriteria</option>
                                                                     <option value="C1"
-                                                                        {{ old('code') == 'C1' ? 'selected' : '' }}>C1
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C1' ? 'selected' : '' }}>
+                                                                        C1
                                                                     </option>
                                                                     <option value="C2"
-                                                                        {{ old('code') == 'C2' ? 'selected' : '' }}>C2
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C2' ? 'selected' : '' }}>
+                                                                        C2
                                                                     </option>
                                                                     <option value="C3"
-                                                                        {{ old('code') == 'C3' ? 'selected' : '' }}>C3
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C3' ? 'selected' : '' }}>
+                                                                        C3
                                                                     </option>
                                                                     <option value="C4"
-                                                                        {{ old('code') == 'C4' ? 'selected' : '' }}>C4
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C4' ? 'selected' : '' }}>
+                                                                        C4
                                                                     </option>
                                                                     <option value="C5"
-                                                                        {{ old('code') == 'C5' ? 'selected' : '' }}>C5
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C5' ? 'selected' : '' }}>
+                                                                        C5
                                                                     </option>
                                                                     <option value="C6"
-                                                                        {{ old('code') == 'C6' ? 'selected' : '' }}>C6
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C6' ? 'selected' : '' }}>
+                                                                        C6
                                                                     </option>
                                                                     <option value="C7"
-                                                                        {{ old('code') == 'C7' ? 'selected' : '' }}>C7
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C7' ? 'selected' : '' }}>
+                                                                        C7
                                                                     </option>
                                                                     <option value="C8"
-                                                                        {{ old('code') == 'C8' ? 'selected' : '' }}>C8
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C8' ? 'selected' : '' }}>
+                                                                        C8
                                                                     </option>
                                                                     <option value="C9"
-                                                                        {{ old('code') == 'C9' ? 'selected' : '' }}>C9
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C9' ? 'selected' : '' }}>
+                                                                        C9
                                                                     </option>
                                                                     <option value="C10"
-                                                                        {{ old('code') == 'C10' ? 'selected' : '' }}>C10
+                                                                        {{ old('criteria_code', $criteria->criteria_code) == 'C10' ? 'selected' : '' }}>
+                                                                        C10
                                                                     </option>
                                                                 </select>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="name" class="form-label">Nama
+                                                                <label for="criteria_name" class="form-label">Nama
                                                                     Kriteria</label>
-                                                                <input type="text" name="name" class="form-control"
-                                                                    value="{{ old('name') }}">
+                                                                <input type="text" name="criteria_name"
+                                                                    class="form-control"
+                                                                    value="{{ old('criteria_name', $criteria->criteria_name) }}">
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="bobot_nilai" class="form-label">Nilai
+                                                                <label for="criteria_value" class="form-label">Nilai
                                                                     Bobot</label>
-                                                                <input type="text" name="bobot_nilai"
-                                                                    class="form-control" value="{{ old('bobot_nilai') }}">
+                                                                <input type="text" name="criteria_value"
+                                                                    class="form-control"
+                                                                    value="{{ old('criteria_value', $criteria->criteria_value) }}">
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="jenis" class="form-label">Jenis
+                                                                <label for="category" class="form-label">Jenis
                                                                     Kriteria</label>
-                                                                <select name="jenis" id="jenis" class="form-select">
+                                                                <select name="category" id="jenis" class="form-select">
                                                                     <option selected disabled>Pilih Jenis Kriteria</option>
                                                                     <option value="Benefit"
-                                                                        {{ old('jenis') == 'Benefit' ? 'selected' : '' }}>
+                                                                        {{ old('category', $criteria->category) == 'Benefit' ? 'selected' : '' }}>
                                                                         Benefit</option>
                                                                     <option value="Cost"
-                                                                        {{ old('jenis') == 'Cost' ? 'selected' : '' }}>Cost
+                                                                        {{ old('category', $criteria->category) == 'Cost' ? 'selected' : '' }}>
+                                                                        Cost
                                                                     </option>
                                                                 </select>
                                                             </div>
@@ -217,7 +230,7 @@
                                 <div class="col-12">
                                     <div class="mb-3">
                                         <label for="code" class="form-label">Kode Kriteria</label>
-                                        <select name="code" id="class-code" class="form-select">
+                                        <select name="criteria_code" id="class-code" class="form-select">
                                             <option selected disabled>Pilih Kode Kriteria</option>
                                             <option value="C1">C1</option>
                                             <option value="C2">C2</option>
@@ -233,15 +246,15 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Nama Kriteria</label>
-                                        <input type="text" name="name" class="form-control" autofocus>
+                                        <input type="text" name="criteria_name" class="form-control" autofocus>
                                     </div>
                                     <div class="mb-3">
                                         <label for="bobot_nilai" class="form-label">Nilai Bobot</label>
-                                        <input type="text" name="bobot_nilai" class="form-control" autofocus>
+                                        <input type="text" name="criteria_value" class="form-control" autofocus>
                                     </div>
                                     <div class="mb-3">
                                         <label for="jenis" class="form-label">Jenis Kriteria</label>
-                                        <select name="jenis" id="jenis" class="form-select">
+                                        <select name="category" id="jenis" class="form-select">
                                             <option selected disabled>Pilih Jenis Kriteria</option>
                                             <option value="Benefit" {{ old('jenis') == 'Benefit' ? 'selected' : '' }}>
                                                 Benefit</option>

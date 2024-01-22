@@ -38,7 +38,7 @@ class MemberController extends Controller
 
         // Generate Member Code
         $lastMember = Member::orderBy('id', 'desc')->first();
-        $validated['code'] = 'A' . ($lastMember ? ($lastMember->id + 1) : 1);
+        $validated['member_code'] = 'A' . ($lastMember ? ($lastMember->id + 1) : 1);
 
         // Passing data ke database
         $member = Member::create($validated);

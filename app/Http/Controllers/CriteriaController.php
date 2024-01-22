@@ -13,7 +13,7 @@ class CriteriaController extends Controller
     {
         $criterias = Criteria::all();
 
-        $totalBobotNilai = $criterias->sum('bobot_nilai');
+        $totalBobotNilai = $criterias->sum('criteria_value');
 
         return view('pages.admin.data-kriteria.criteria', compact('criterias', 'totalBobotNilai'));
     }

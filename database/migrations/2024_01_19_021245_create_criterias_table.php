@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('criterias', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('name', 60);
-            $table->integer('bobot_nilai');
-            $table->enum('jenis', ['Benefit', 'Cost']);
+            $table->string('criteria_code')->unique();
+            $table->string('criteria_name', 60);
+            $table->integer('criteria_value');
+            $table->enum('category', ['Benefit', 'Cost']);
             $table->softDeletes();
             $table->timestamps();
         });
