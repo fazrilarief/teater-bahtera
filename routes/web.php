@@ -29,7 +29,8 @@ Route::get('export/excel/', [MemberController::class, 'export'])->name('data-ang
 
 Route::resource('data-kriteria', CriteriaController::class)
     ->names([
-        'index' => 'data-kriteria.criteria'
+        'index' => 'data-kriteria.criteria',
+        // 'create' => 'data-kriteria.form',
     ]);
 
 Route::resource('data-sub-criteria', SubCriteriaController::class)
@@ -37,6 +38,8 @@ Route::resource('data-sub-criteria', SubCriteriaController::class)
         'index' => 'data-sub-kriteria.sub-criteria',
     ]);
 
+
+    
 // Route::get('data-anggota', function () {
 //     return view('pages.admin.data-anggota.member');
 // })->name('data-anggota.member');
@@ -49,9 +52,9 @@ Route::resource('data-sub-criteria', SubCriteriaController::class)
 //     return view('pages.admin.data-kriteria.criteria');
 // })->name('data-kriteria.criteria');
 
-Route::get('data-kriteria/tambah-kriteria', function () {
-    return view('pages.admin.data-kriteria.form');
-})->name('data-kriteria.form');
+// Route::get('data-kriteria/tambah-kriteria', function () {
+//     return view('pages.admin.data-kriteria.form');
+// })->name('data-kriteria.form');
 
 // Route::get('data-sub-kriteria', function () {
 //     return view('pages.admin.data-sub-kriteria.sub-criteria');
