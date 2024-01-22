@@ -30,7 +30,7 @@ Route::get('export/excel/', [MemberController::class, 'export'])->name('data-ang
 Route::resource('data-kriteria', CriteriaController::class)
     ->names([
         'index' => 'data-kriteria.criteria',
-        // 'create' => 'data-kriteria.form',
+        'create' => 'data-kriteria.form',
     ]);
 
 Route::resource('data-sub-criteria', SubCriteriaController::class)
@@ -39,7 +39,7 @@ Route::resource('data-sub-criteria', SubCriteriaController::class)
     ]);
 
 
-    
+
 // Route::get('data-anggota', function () {
 //     return view('pages.admin.data-anggota.member');
 // })->name('data-anggota.member');

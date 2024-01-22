@@ -14,13 +14,15 @@ class CriteriaController extends Controller
         $criterias = Criteria::all();
 
         $totalBobotNilai = $criterias->sum('criteria_value');
+        $totalNormalisasi = $criterias->sum('normalisasi');
 
-        return view('pages.admin.data-kriteria.criteria', compact('criterias', 'totalBobotNilai'));
+        return view('pages.admin.data-kriteria.criteria', compact('criterias', 'totalBobotNilai', 'totalNormalisasi'));
     }
 
     public function store(CriteriaRequest $request)
     {
         $validated = $request->validated();
+        $validated['normalisasi'] = $validated['criteria_value'] / 100;
 
         try {
             $create = Criteria::create($validated);
@@ -41,6 +43,7 @@ class CriteriaController extends Controller
     public function update(CriteriaRequest $request, $id)
     {
         $validated = $request->validated();
+        $validated['normalisasi'] = $validated['criteria_value'] / 100;
 
         $criteria = Criteria::findOrFail($id);
 

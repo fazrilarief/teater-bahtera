@@ -14,6 +14,7 @@ class Criteria extends Model
         'criteria_code',
         'criteria_name',
         'criteria_value',
+        'normalisasi',
         'category',
     ];
 }

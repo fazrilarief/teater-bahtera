@@ -25,6 +25,7 @@ class CriteriaRequest extends FormRequest
             'criteria_code' => 'required|string',
             'criteria_name' => 'required|string',
             'criteria_value' => 'required|integer',
+            // 'normalisasi' => 'required|double',
             'category' => 'required|in:Benefit,Cost',
         ];
     }

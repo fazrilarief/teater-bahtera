@@ -55,6 +55,7 @@
                                 <th>kode</th>
                                 <th>Nama Kriteria</th>
                                 <th>Bobot Nilai</th>
+                                <th>Normalisasi</th>
                                 <th>Jenis</th>
                                 <th></th>
                             </tr>
@@ -69,6 +70,7 @@
                                     <td>{{ $criteria->criteria_code }}</td>
                                     <td>{{ $criteria->criteria_name }}</td>
                                     <td>{{ $criteria->criteria_value }}</td>
+                                    <td>{{ $criteria->normalisasi }}</td>
                                     <td>{{ $criteria->category }}</td>
                                     <td>
                                         <div class="row">
@@ -204,7 +206,7 @@
                             <tr>
                                 <th colspan="3">Total</th>
                                 <td>{{ $totalBobotNilai }}</td>
-                                <td></td>
+                                <td>{{ $totalNormalisasi }}</td>
                                 <td></td>
                             </tr>
                         </tfoot>

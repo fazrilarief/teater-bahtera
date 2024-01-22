@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('criteria_code')->unique();
             $table->string('criteria_name', 60);
             $table->integer('criteria_value');
+            $table->double('normalisasi');
             $table->enum('category', ['Benefit', 'Cost']);
             $table->softDeletes();
             $table->timestamps();
