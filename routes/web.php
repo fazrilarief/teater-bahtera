@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\SubCriteriaController;
@@ -38,6 +39,10 @@ Route::resource('data-sub-criteria', SubCriteriaController::class)
         'index' => 'data-sub-kriteria.sub-criteria',
     ]);
 
+Route::resource('penilaian-alternatif/assessment', AssessmentController::class)
+    ->names([
+        'index' => 'penilaian-alternatif.assessment',
+    ]);
 
 
 // Route::get('data-anggota', function () {
@@ -60,13 +65,13 @@ Route::resource('data-sub-criteria', SubCriteriaController::class)
 //     return view('pages.admin.data-sub-kriteria.sub-criteria');
 // })->name('data-sub-kriteria.sub-criteria');
 
-Route::get('data-alternatif', function () {
-    return view('pages.admin.data-alternatif.alternatif');
-})->name('data-alternatif.alternatif');
+// Route::get('data-alternatif', function () {
+//     return view('pages.admin.data-alternatif.alternatif');
+// })->name('data-alternatif.alternatif');
 
-Route::get('penilaian-alternatif/assessment', function () {
-    return view('pages.admin.penilaian-alternatif.assessment');
-})->name('penilaian-alternatif.assessment');
+// Route::get('penilaian-alternatif/assessment', function () {
+//     return view('pages.admin.penilaian-alternatif.assessment');
+// })->name('penilaian-alternatif.assessment');
 
 Route::get('perhitungan', function () {
     return view('pages.admin.perhitungan.value-calculation');

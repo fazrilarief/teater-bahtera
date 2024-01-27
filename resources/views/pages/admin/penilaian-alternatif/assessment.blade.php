@@ -24,6 +24,17 @@
         {{-- Breadcrumb Ends --}}
 
         <div class="container-fluid p-0 mt-4">
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="card shadow-lg">
                 <div class="card-header">
                     <h1 class="card-title mb-0">Penilaian</h1>
@@ -33,106 +44,162 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Kode</th>
                                 <th>Nama</th>
                                 <th>Kelas</th>
+
+                                @foreach ($criterias as $criteria)
+                                    <th>{{ $criteria->criteria_name }}</th>
+                                @endforeach
+
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1. </td>
-                                <td>Fazril Arief Nugraha</td>
-                                <td>12 Mia 2</td>
-                                <td>
-                                    <div class="text-nowrap">
-                                        <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdropAssessment">
-                                            <i class="align-middle" data-feather="edit"></i> Nilai
-                                        </button>
+                            @foreach ($members as $member)
+                                <tr>
+                                    <td>{{ $loop->iteration }} </td>
+                                    <td>{{ $member->member_code }}</td>
+                                    <td>{{ $member->member_name }}</td>
+                                    <td>{{ $member->grade . ' ' . $member->major . ' ' . $member->class_code }}</td>
+
+                                    @foreach ($criterias as $criteria)
+                                        <td class="table-success">
+                                            @foreach ($assessments as $assessment)
+                                                @if ($assessment->members_id === $member->id && $assessment->criterias_id === $criteria->id)
+                                                    {{ $assessment->sub_criteria_name }}
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                    @endforeach
+
+                                    <td>
+                                        <div class="row">
+                                            <div class="col d-flex justify-content-end gap-2">
+                                                <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#nilaiAlternatif{{ $member->id }}">
+                                                    <i class="align-middle" data-feather="edit"></i> Nilai
+                                                </button>
+                                                <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#editNilaiAlternatif{{ $member->id }}">
+                                                    <i class="align-middle" data-feather="eye"></i> Edit
+                                                </button>
+                                            </div>
+                                    </td>
+                                </tr>
+
+                                {{-- Modal Nilai Alterntaif --}}
+                                <div class="modal fade" id="nilaiAlternatif{{ $member->id }}" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1"
+                                    aria-labelledby="nilaiAlternatifLabel{{ $member->id }}" aria-hidden="true">
+                                    <div class="modal-dialog bg-primary">
+                                        <div class="modal-content">
+                                            <form action="{{ route('assessment.store') }}" method="POST">
+                                                @csrf
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="nilaiAlternatifLabel{{ $member->id }}">
+                                                        Nilai Anggota : <strong>{{ $member->member_name }}</strong>
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <input type="hidden" name="member_id"
+                                                                value="{{ $member->id }}">
+                                                            @foreach ($criterias as $criteria)
+                                                                <div class="mb-3">
+                                                                    <label for="criteria[{{ $criteria->id }}]"
+                                                                        class="form-label">
+                                                                        {{ $criteria->criteria_name }}
+                                                                    </label>
+                                                                    <select name="criteria[{{ $criteria->id }}]"
+                                                                        id="criteria[{{ $criteria->id }}]"
+                                                                        class="form-select">
+                                                                        <option selected disabled>.....</option>
+                                                                        @php
+                                                                            $res = $subCriterias->where('criterias_id', $criteria->id)->all();
+                                                                        @endphp
+                                                                        @foreach ($res as $subCriteria)
+                                                                            <option value="{{ $subCriteria->id }}">
+                                                                                {{ $subCriteria->sub_criteria_name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                                {{-- Modal Nilai Alterntaif Ends --}}
+
+                                {{-- Modal Edit Nilai Alterntaif --}}
+                                <div class="modal fade" id="editNilaiAlternatif{{ $member->id }}"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                    aria-labelledby="editNilaiAlternatifLabel{{ $member->id }}" aria-hidden="true">
+                                    <div class="modal-dialog bg-primary">
+                                        <div class="modal-content">
+                                            <form action="{{ route('assessment.update', $assessment->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"
+                                                        id="editNilaiAlternatifLabel{{ $member->id }}">
+                                                        Edit Nilai : <strong>{{ $member->member_name }}</strong>
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <input type="hidden" name="member_id"
+                                                                value="{{ $member->id }}">
+                                                            @foreach ($criterias as $criteria)
+                                                                <div class="mb-3">
+                                                                    <label for="criteria[{{ $criteria->id }}]"
+                                                                        class="form-label">
+                                                                        {{ $criteria->criteria_name }}
+                                                                    </label>
+                                                                    <select name="criteria[{{ $criteria->id }}]"
+                                                                        id="criteria[{{ $criteria->id }}]"
+                                                                        class="form-select">
+                                                                        <option value="" disabled>.....</option>
+                                                                        @foreach ($subCriterias->where('criterias_id', $criteria->id) as $subCriteria)
+                                                                            <option value="{{ $subCriteria->id }}"
+                                                                                {{ old('criteria.' . $criteria->id, $assessment->sub_criterias_id ?? '') == $subCriteria->id ? 'selected' : '' }}>
+                                                                                {{ $subCriteria->sub_criteria_name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- Modal Edit Nilai Alterntaif Ends --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        {{-- Modal --}}
-        <div class="modal fade" id="staticBackdropAssessment" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropSubKriteriaLabel" aria-hidden="true">
-            <div class="modal-dialog bg-primary">
-                <div class="modal-content">
-                    <form action="#">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Nilai Anggota : Fazril Arief Nugraha</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="mb-3">
-                                        <label for="vokal" class="form-label">Vokal (C1)</label>
-                                        <select name="vokal" id="vokal" class="form-select">
-                                            <option selected disabled>.....</option>
-                                            <option value="1">1 - Tidak Lantang</option>
-                                            <option value="2">2 - Kurang Lantang</option>
-                                            <option value="3">3 - Lantang</option>
-                                            <option value="4">4 - Sangat Lantang</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="artikulasi" class="form-label">Artikulasi (C2)</label>
-                                        <select name="artikulasi" id="artikulasi" class="form-select">
-                                            <option selected disabled>.....</option>
-                                            <option value="1">1 - Tidak Jelas</option>
-                                            <option value="2">2 - Kurang Jelas</option>
-                                            <option value="3">3 - Jelas</option>
-                                            <option value="4">4 - Sangat Jelas</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="intonasi" class="form-label">Intonasi (C3)</label>
-                                        <select name="intonasi" id="intonsai" class="form-select">
-                                            <option selected disabled>.....</option>
-                                            <option value="2">2 - Tidak Sesuai</option>
-                                            <option value="4">4 - Sangat Sesuai</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="gesture" class="form-label">Gesture (C4)</label>
-                                        <select name="gesture" id="gesture" class="form-select">
-                                            <option selected disabled>.....</option>
-                                            <option value="2">2 - Kaku</option>
-                                            <option value="4">4 - Natural</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="vocal" class="form-label">Kehadiran (C5)</label>
-                                        <select name="kehadiran" id="kehadiran" class="form-select">
-                                            <option selected disabled>.....</option>
-                                            <option value="0">0 - Tidak Pernah</option>
-                                            <option value="1">1 - Jarang</option>
-                                            <option value="2">2 - Kadang-Kadang</option>
-                                            <option value="3">3 - Sering</option>
-                                            <option value="4">4 - Selalu</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary">Submit</button>
-                            <a href="{{ route('penilaian-alternatif.assessment') }}" class="btn btn-danger">Batal</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </main>
 @endsection
