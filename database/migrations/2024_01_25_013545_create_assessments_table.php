@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('members_id')->unique();
+            $table->unsignedBigInteger('members_id');
             $table->foreign('members_id')->references('id')->on('members');
             $table->unsignedBigInteger('criterias_id');
             $table->foreign('criterias_id')->references('id')->on('criterias');

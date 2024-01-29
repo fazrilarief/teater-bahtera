@@ -142,7 +142,7 @@
                                 {{-- Modal Nilai Alterntaif Ends --}}
 
                                 {{-- Modal Edit Nilai Alterntaif --}}
-                                <div class="modal fade" id="editNilaiAlternatif{{ $member->id }}"
+                                {{-- <div class="modal fade" id="editNilaiAlternatif{{ $member->id }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                     aria-labelledby="editNilaiAlternatifLabel{{ $member->id }}" aria-hidden="true">
                                     <div class="modal-dialog bg-primary">
@@ -192,7 +192,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- Modal Edit Nilai Alterntaif Ends --}}
                             @endforeach
                         </tbody>
