@@ -25,6 +25,7 @@
         {{-- Breadcrumb Ends --}}
 
         <div class="container-fluid p-0 mt-4">
+
             {{-- Nilai Data Alternatif --}}
             <div class="card shadow-lg">
                 <div class="card-header">
@@ -79,45 +80,23 @@
                                         <th>No</th>
                                         <th>kode</th>
                                         <th>Nama Kriteria</th>
-                                        <th>Bobot Nilai</th>
+                                        <th>Bobot</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>C1</td>
-                                        <td>Vokal</td>
-                                        <td>15</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2.</td>
-                                        <td>C2</td>
-                                        <td>Artikulasi</td>
-                                        <td>20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3.</td>
-                                        <td>C3</td>
-                                        <td>Intonasi</td>
-                                        <td>20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4.</td>
-                                        <td>C4</td>
-                                        <td>Gesture</td>
-                                        <td>20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5.</td>
-                                        <td>C5</td>
-                                        <td>Kehadiran</td>
-                                        <td>25</td>
-                                    </tr>
+                                    @foreach ($criterias as $criteria)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $criteria->criteria_code }}</td>
+                                            <td>{{ $criteria->criteria_name }}</td>
+                                            <td>{{ $criteria->criteria_value }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th colspan="3">Total</th>
-                                        <td>100</td>
+                                        <td class="fw-bold">{{ $totalBobotNilai }}</td>
                                         <td></td>
                                         <td></td>
                                     </tr>
@@ -138,52 +117,26 @@
                                         <th>No</th>
                                         <th>kode</th>
                                         <th>Nama Kriteria</th>
-                                        <th>Bobot Nilai</th>
-                                        <th>Nilai Normalisasi</th>
+                                        <th>Bobot</th>
+                                        <th>Normalisasi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>C1</td>
-                                        <td>Vokal</td>
-                                        <td>15</td>
-                                        <td>0.15</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2.</td>
-                                        <td>C2</td>
-                                        <td>Artikulasi</td>
-                                        <td>20</td>
-                                        <td>0.20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3.</td>
-                                        <td>C3</td>
-                                        <td>Intonasi</td>
-                                        <td>20</td>
-                                        <td>0.20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4.</td>
-                                        <td>C4</td>
-                                        <td>Gesture</td>
-                                        <td>20</td>
-                                        <td>0.20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5.</td>
-                                        <td>C5</td>
-                                        <td>Kehadiran</td>
-                                        <td>25</td>
-                                        <td>0.25</td>
-                                    </tr>
+                                    @foreach ($criterias as $criteria)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $criteria->criteria_code }}</td>
+                                            <td>{{ $criteria->criteria_name }}</td>
+                                            <td>{{ $criteria->criteria_value }}</td>
+                                            <td class="fw-bold">{{ $criteria->normalisasi }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th colspan="3">Total</th>
-                                        <td>100</td>
-                                        <td>1</td>
+                                        <td class="fw-bold">{{ $totalBobotNilai }}</td>
+                                        <td class="fw-bold">{{ $totalBobotNormalisasi }}</td>
                                         <td></td>
                                     </tr>
                                 </tfoot>

@@ -19,7 +19,9 @@ class CalculateController extends Controller
 
         // Mengambil data dari table Criteria
         $criterias = Criteria::all();
+        $totalBobotNilai = $criterias->sum('criteria_value');
+        $totalBobotNormalisasi = $criterias->sum('normalisasi');
 
-        return view('pages.admin.perhitungan.calculation', compact('assessments', 'members', 'criterias'));
+        return view('pages.admin.perhitungan.calculation', compact('assessments', 'members', 'criterias', 'totalBobotNilai', 'totalBobotNormalisasi'));
     }
 }
