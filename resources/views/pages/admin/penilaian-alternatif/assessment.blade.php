@@ -64,7 +64,7 @@
                                     <td>{{ $member->grade . ' ' . $member->major . ' ' . $member->class_code }}</td>
 
                                     @foreach ($criterias as $criteria)
-                                        <td class="table-success">
+                                        <td class="fw-bold">
                                             @foreach ($assessments as $assessment)
                                                 @if ($assessment->members_id === $member->id && $assessment->criterias_id === $criteria->id)
                                                     {{ $assessment->sub_criteria_name }}
@@ -108,6 +108,10 @@
                                                         <div class="col-12">
                                                             <input type="hidden" name="member_id"
                                                                 value="{{ $member->id }}">
+                                                            <input type="hidden" name="member_name"
+                                                                value="{{ $member->member_name }}">
+                                                            <input type="hidden" name="member_code"
+                                                                value="{{ $member->member_code }}">
                                                             @foreach ($criterias as $criteria)
                                                                 <div class="mb-3">
                                                                     <label for="criteria[{{ $criteria->id }}]"

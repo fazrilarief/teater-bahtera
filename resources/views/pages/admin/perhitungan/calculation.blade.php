@@ -31,30 +31,34 @@
                     <h4>Nilai Data Alternatif</h4>
                 </div>
                 <div class="card-body table-responsive">
-                    <table class="table table-responsive table-hover my-0">
+                    <table id="myTable" class="table table-responsive table-hover my-0">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Kode Alternatif</th>
-                                <th>C1</th>
-                                <th>C2</th>
-                                <th>C3</th>
-                                <th>C4</th>
-                                <th>C5</th>
+                                @foreach ($criterias as $criteria)
+                                    <th>{{ $criteria->criteria_code }}</th>
+                                @endforeach
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Fazril Arief Nugraha</td>
-                                <td>A1</td>
-                                <td>4</td>
-                                <td>4</td>
-                                <td>4</td>
-                                <td>4</td>
-                                <td>4</td>
-                            </tr>
+                            @foreach ($members as $member)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $member->member_name }}</td>
+                                    <td>{{ $member->member_code }}</td>
+                                    @foreach ($criterias as $criteria)
+                                        <td>
+                                            @foreach ($assessments as $assessment)
+                                                @if ($assessment->members_id === $member->id && $assessment->criterias_id === $criteria->id)
+                                                    {{ $assessment->sub_criteria_value }}
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

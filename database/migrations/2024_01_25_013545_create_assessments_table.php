@@ -19,8 +19,11 @@ return new class extends Migration
             $table->foreign('criterias_id')->references('id')->on('criterias');
             $table->unsignedBigInteger('sub_criterias_id');
             $table->foreign('sub_criterias_id')->references('id')->on('sub_criterias');
+            $table->string('members_name');
+            $table->string('members_code');
             $table->string('criteria_name');
             $table->string('sub_criteria_name');
+            $table->integer('sub_criteria_value');
             $table->softDeletes();
             $table->timestamps();
         });

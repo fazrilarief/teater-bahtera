@@ -49,8 +49,9 @@ class AssessmentController extends Controller
         // Validasi request
         $request->validate([
             'member_id' => 'required|exists:members,id',
+            'member_name' => 'required|exists:members,member_name',
+            'member_code' => 'required|exists:members,member_code',
             'criteria' => 'required|array',
-            // Tambahkan validasi lainnya sesuai kebutuhan
         ]);
 
         // Check if the member_id has already been assessed
@@ -70,14 +71,18 @@ class AssessmentController extends Controller
             // Dapatkan nama kriteria dan sub-kriteria
             $criteriaName = Criteria::find($criteriaId)->criteria_name;
             $subCriteriaName = SubCriteria::find($subCriteriaId)->sub_criteria_name;
+            $subCriteriaValue = SubCriteria::find($subCriteriaId)->sub_criteria_value;
 
             // Simpan nilai ke database
             $assessment = new Assessment([
                 'members_id' => $request->input('member_id'),
+                'members_name' => $request->input('member_name'),
+                'members_code' => $request->input('member_code'),
                 'criterias_id' => $criteriaId,
                 'sub_criterias_id' => $subCriteriaId,
                 'criteria_name' => $criteriaName,
                 'sub_criteria_name' => $subCriteriaName,
+                'sub_criteria_value' => $subCriteriaValue,
             ]);
             $assessment->save();
         }

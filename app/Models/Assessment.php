@@ -14,7 +14,10 @@ class Assessment extends Model
         'criterias_id',
         'sub_criterias_id',
         'criteria_name',
+        'members_name',
+        'members_code',
         'sub_criteria_name',
+        'sub_criteria_value',
     ];
 
     public function member()
