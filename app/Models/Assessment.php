@@ -13,9 +13,10 @@ class Assessment extends Model
         'members_id',
         'criterias_id',
         'sub_criterias_id',
-        'criteria_name',
         'members_name',
         'members_code',
+        'criteria_name',
+        'category',
         'sub_criteria_name',
         'sub_criteria_value',
     ];

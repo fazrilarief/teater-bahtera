@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('members_name');
             $table->string('members_code');
             $table->string('criteria_name');
+            $table->string('category');
             $table->string('sub_criteria_name');
             $table->integer('sub_criteria_value');
             $table->softDeletes();

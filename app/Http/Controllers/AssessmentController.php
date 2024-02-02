@@ -70,6 +70,7 @@ class AssessmentController extends Controller
 
             // Dapatkan nama kriteria dan sub-kriteria
             $criteriaName = Criteria::find($criteriaId)->criteria_name;
+            $criteriaCategory = Criteria::find($criteriaId)->category;
             $subCriteriaName = SubCriteria::find($subCriteriaId)->sub_criteria_name;
             $subCriteriaValue = SubCriteria::find($subCriteriaId)->sub_criteria_value;
 
@@ -81,6 +82,7 @@ class AssessmentController extends Controller
                 'criterias_id' => $criteriaId,
                 'sub_criterias_id' => $subCriteriaId,
                 'criteria_name' => $criteriaName,
+                'category' => $criteriaCategory,
                 'sub_criteria_name' => $subCriteriaName,
                 'sub_criteria_value' => $subCriteriaValue,
             ]);
