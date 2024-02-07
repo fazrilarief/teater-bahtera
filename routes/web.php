@@ -46,6 +46,8 @@ Route::resource('penilaian-alternatif/assessment', AssessmentController::class)
     ]);
 
 Route::get('perhitungan', [CalculateController::class, 'index'])->name('perhitungan.value-calculation');
+// Rute untuk melakukan perhitungan utility
+Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
 
 // Route::get('data-anggota', function () {
 //     return view('pages.admin.data-anggota.member');

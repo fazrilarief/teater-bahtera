@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('sub_criteria_name');
             $table->integer('sub_criteria_value');
+            $table->decimal('utility_value', 10, 2)->nullable(); // Menambahkan kolom untuk menyimpan nilai utility
             $table->softDeletes();
             $table->timestamps();
         });

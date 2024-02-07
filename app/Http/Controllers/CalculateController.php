@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assessment;
 use App\Models\Member;
 use App\Models\Criteria;
+use App\Models\SubCriteria;
 use Illuminate\Http\Request;
 
 class CalculateController extends Controller
@@ -23,5 +24,43 @@ class CalculateController extends Controller
         $totalBobotNormalisasi = $criterias->sum('normalisasi');
 
         return view('pages.admin.perhitungan.calculation', compact('assessments', 'members', 'criterias', 'totalBobotNilai', 'totalBobotNormalisasi'));
+    }
+
+    public function calculateUtility()
+    {
+        $assessments = Assessment::all();
+
+        foreach ($assessments as $assessment) {
+            $xij = $assessment->sub_criteria_value;
+            $category = $assessment->category;
+            $criteriaName = $assessment->criteria_name;
+
+            // Pastikan $category dan $criteriaName ada sebelum menggunakan kondisi
+            if (isset($category, $criteriaName)) {
+                // Melakukan perhitungan nilai utility berdasarkan kategori
+                $xjmin = Assessment::where('criteria_name', $criteriaName)
+                    ->where('category', $category)
+                    ->min('sub_criteria_value');
+
+                $xjmax = Assessment::where('criteria_name', $criteriaName)
+                    ->where('category', $category)
+                    ->max('sub_criteria_value');
+
+                // Pastikan $xjmax dan $xjmin tidak null, dan $xjmin tidak sama dengan $xij
+                if ($xjmax !== null && $xjmin !== null) {
+                    // Menyimpan nilai utility ke dalam tabel assessments
+                    if ($category === 'Benefit') {
+                        $utility = ($xij - $xjmin) / ($xjmax - $xjmin);
+                    } else {
+                        $utility = ($xjmax - $xij) / ($xjmax - $xjmin);
+                    }
+
+                    $assessment->utility_value = $utility;
+                    $assessment->save();
+                }
+            }
+        }
+
+        return redirect()->back();
     }
 }

@@ -150,7 +150,18 @@
             {{-- Nilai Utility --}}
             <div class="card shadow-lg">
                 <div class="card-header">
-                    <h4>Nilai Utility</h4>
+                    <div class="row">
+                        <div class="col-4">
+                            <h4>Nilai Utility</h4>
+                        </div>
+                        <div class="col-8 d-flex justify-content-end">
+                            {{-- Tombol untuk melakukan perhitungan dan menyimpan nilai utility --}}
+                            <form action="{{ route('hitung.utility') }}" method="get">
+                                @csrf
+                                <button type="submit" class="btn btn-primary mt-3">Hitung Nilai Utility</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body table-responsive">
                     <table class="table table-responsive table-hover my-0">
@@ -158,23 +169,27 @@
                             <tr>
                                 <th>No</th>
                                 <th>Kode Alternatif</th>
-                                <th>C1</th>
-                                <th>C2</th>
-                                <th>C3</th>
-                                <th>C4</th>
-                                <th>C5</th>
+                                @foreach ($criterias as $criteria)
+                                    <th>{{ $criteria->criteria_code }}</th>
+                                @endforeach
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Fazril Arief Nugraha</td>
-                                <td>1</td>
-                                <td>0.677</td>
-                                <td>0.333</td>
-                                <td>0.567</td>
-                                <td>1</td>
-                            </tr>
+                            @foreach ($members as $member)
+                                <tr>
+                                    <td>1</td>
+                                    <td>{{ $member->member_name }}</td>
+                                    @foreach ($criterias as $criteria)
+                                        <td>
+                                            @foreach ($assessments as $assessment)
+                                                @if ($assessment->members_id === $member->id && $assessment->criterias_id === $criteria->id)
+                                                    {{ $assessment->utility_value ?? 'N/A' }}
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
