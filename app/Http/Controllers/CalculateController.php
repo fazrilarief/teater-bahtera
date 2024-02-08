@@ -55,6 +55,7 @@ class CalculateController extends Controller
                         $utility = ($xjmax - $xij) / ($xjmax - $xjmin);
                     }
 
+                    // Menyimpan data ke database
                     $assessment->utility_value = $utility;
                     $assessment->save();
                 }

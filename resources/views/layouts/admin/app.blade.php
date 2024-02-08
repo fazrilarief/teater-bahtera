@@ -7,7 +7,7 @@
 
 <body>
     <div class="wrapper">
-        @include('sweetalert::alert')1
+        @include('sweetalert::alert')
         @include('includes.sidebar')
         <div class="main">
             @include('includes.navbar')

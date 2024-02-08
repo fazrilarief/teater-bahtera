@@ -6,6 +6,8 @@
 <script src="{{ asset('assets/vendor/DataTable/js/dataTables.bootstrap5.min.js') }}"></script>
 <script>
     new DataTable('#myTable');
+    new DataTable('#myTable1');
+    new DataTable('#myTable2');
 </script>
 
 {{-- Tooltip --}}

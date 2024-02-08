@@ -46,7 +46,7 @@
                         <tbody>
                             @foreach ($members as $member)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $loop->iteration . '.' }}</td>
                                     <td>{{ $member->member_name }}</td>
                                     <td>{{ $member->member_code }}</td>
                                     @foreach ($criterias as $criteria)
@@ -86,7 +86,7 @@
                                 <tbody>
                                     @foreach ($criterias as $criteria)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $loop->iteration . '.' }}</td>
                                             <td>{{ $criteria->criteria_code }}</td>
                                             <td>{{ $criteria->criteria_name }}</td>
                                             <td>{{ $criteria->criteria_value }}</td>
@@ -124,7 +124,7 @@
                                 <tbody>
                                     @foreach ($criterias as $criteria)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $loop->iteration . '.' }}</td>
                                             <td>{{ $criteria->criteria_code }}</td>
                                             <td>{{ $criteria->criteria_name }}</td>
                                             <td>{{ $criteria->criteria_value }}</td>
@@ -158,16 +158,20 @@
                             {{-- Tombol untuk melakukan perhitungan dan menyimpan nilai utility --}}
                             <form action="{{ route('hitung.utility') }}" method="get">
                                 @csrf
-                                <button type="submit" class="btn btn-primary mt-3">Hitung Nilai Utility</button>
+
+                                <button type="submit" class="btn btn-success">
+                                    Hitung Utility <i class="align-middle" data-feather='chevrons-right'></i>
+                                </button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="card-body table-responsive">
-                    <table class="table table-responsive table-hover my-0">
+                    <table id="myTable1" class="table table-responsive table-hover my-0">
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama Alternatif</th>
                                 <th>Kode Alternatif</th>
                                 @foreach ($criterias as $criteria)
                                     <th>{{ $criteria->criteria_code }}</th>
@@ -177,10 +181,11 @@
                         <tbody>
                             @foreach ($members as $member)
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{ $loop->iteration . '.' }}</td>
                                     <td>{{ $member->member_name }}</td>
+                                    <td>{{ $member->member_code }}</td>
                                     @foreach ($criterias as $criteria)
-                                        <td>
+                                        <td class="fw-bold">
                                             @foreach ($assessments as $assessment)
                                                 @if ($assessment->members_id === $member->id && $assessment->criterias_id === $criteria->id)
                                                     {{ $assessment->utility_value ?? 'N/A' }}
@@ -199,24 +204,37 @@
             {{-- Hasil Akhir --}}
             <div class="card shadow-lg">
                 <div class="card-header">
-                    <h4>Hasil Akhir</h4>
+                    <div class="row">
+                        <div class="col-4">
+                            <h4>Nilai Utility</h4>
+                        </div>
+                        <div class="col-8 d-flex justify-content-end">
+                            {{-- Tombol untuk melakukan perhitungan dan menyimpan nilai utility --}}
+                            <form action="" method="">
+                                @csrf
+                                <button type="submit" class="btn btn-success">
+                                    Hitung Nilai Akhir <i class="align-middle" data-feather='chevrons-right'></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body table-responsive">
-                    <table id="myTable" class="table table-responsive table-hover my-0">
+                    <table id="myTable2" class="table table-responsive table-hover my-0">
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama Alternatif</th>
                                 <th>Kode Alternatif</th>
-                                <th>Nama</th>
                                 <th>Nilai Akhir</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1.</td>
-                                <td>A1</td>
                                 <td>Fazril Arief Nugraha</td>
-                                <td>0.036</td>
+                                <td>A1</td>
+                                <td class="fw-bold">0.036</td>
                             </tr>
                         </tbody>
                     </table>
