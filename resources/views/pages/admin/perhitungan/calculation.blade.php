@@ -206,11 +206,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-4">
-                            <h4>Nilai Utility</h4>
+                            <h4>Hasil Akhir</h4>
                         </div>
                         <div class="col-8 d-flex justify-content-end">
                             {{-- Tombol untuk melakukan perhitungan dan menyimpan nilai utility --}}
-                            <form action="" method="">
+                            <form action="{{ route('perhitungan.calculate-result') }}" method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-success">
                                     Hitung Nilai Akhir <i class="align-middle" data-feather='chevrons-right'></i>
@@ -230,12 +230,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Fazril Arief Nugraha</td>
-                                <td>A1</td>
-                                <td class="fw-bold">0.036</td>
-                            </tr>
+                            @foreach ($results as $key => $result)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $result->members_name }}</td>
+                                    <td>{{ $result->members_code }}</td>
+                                    <td class="fw-bold">{{ number_format($result->result, 3) }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

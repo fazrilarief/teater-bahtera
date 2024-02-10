@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assessment;
 use App\Models\Member;
 use App\Models\Criteria;
-use App\Models\SubCriteria;
+use App\Models\Result;
 use Illuminate\Http\Request;
 
 class CalculateController extends Controller
@@ -18,12 +18,15 @@ class CalculateController extends Controller
         // Mengambil data dari table Member
         $members = Member::all();
 
+        // Mengambil data dari table Member
+        $results = Result::all();
+
         // Mengambil data dari table Criteria
         $criterias = Criteria::all();
         $totalBobotNilai = $criterias->sum('criteria_value');
         $totalBobotNormalisasi = $criterias->sum('normalisasi');
 
-        return view('pages.admin.perhitungan.calculation', compact('assessments', 'members', 'criterias', 'totalBobotNilai', 'totalBobotNormalisasi'));
+        return view('pages.admin.perhitungan.calculation', compact('assessments', 'members', 'criterias', 'results', 'totalBobotNilai', 'totalBobotNormalisasi'));
     }
 
     public function calculateUtility()
@@ -63,5 +66,46 @@ class CalculateController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function calculateResult()
+    {
+        // Mengambil data dari tabel Members
+        $members = Member::all();
+
+        // Mengambil data dari tabel Criterias
+        $criterias = Criteria::all();
+
+        foreach ($members as $member) {
+            $nilaiAkhir = 0;
+
+            foreach ($criterias as $criteria) {
+                // Mendapatkan nilai Xuc dari tabel Assessments
+                $xuc = Assessment::where('members_id', $member->id)
+                    ->where('criteria_name', $criteria->criteria_name)
+                    ->value('utility_value');
+
+                // Mendapatkan nilai Xnc dari tabel Criterias
+                $xnc = $criteria->normalisasi;
+
+                // Menghitung nilaiC = Xuc * Xnc
+                $nilaiC = $xuc * $xnc;
+
+                // Menambahkan nilaiC ke nilaiAkhir
+                $nilaiAkhir += $nilaiC;
+            }
+
+            // Mencari atau membuat objek Result berdasarkan members_id
+            $result = Result::firstOrNew(['members_id' => $member->id]);
+
+            // Menyimpan nilaiAkhir ke dalam objek Result
+            $result->members_name = $member->member_name;
+            $result->result = $nilaiAkhir;
+
+            // Menyimpan objek Result ke dalam tabel Results
+            $result->save();
+        }
+
+        return redirect()->back()->with('success', 'Nilai akhir berhasil dihitung.');
     }
 }

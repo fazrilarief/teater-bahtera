@@ -46,40 +46,9 @@ Route::resource('penilaian-alternatif/assessment', AssessmentController::class)
     ]);
 
 Route::get('perhitungan', [CalculateController::class, 'index'])->name('perhitungan.value-calculation');
+Route::post('perhitungan/hitung-nilai-akhir', [CalculateController::class, 'calculateResult'])->name('perhitungan.calculate-result');
 // Rute untuk melakukan perhitungan utility
 Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
-
-// Route::get('data-anggota', function () {
-//     return view('pages.admin.data-anggota.member');
-// })->name('data-anggota.member');
-
-// Route::get('data-anggota/tambah-anggota', function () {
-//     return view('pages.admin.data-anggota.form');
-// })->name('data-anggota.form');
-
-// Route::get('data-kriteria', function () {
-//     return view('pages.admin.data-kriteria.criteria');
-// })->name('data-kriteria.criteria');
-
-// Route::get('data-kriteria/tambah-kriteria', function () {
-//     return view('pages.admin.data-kriteria.form');
-// })->name('data-kriteria.form');
-
-// Route::get('data-sub-kriteria', function () {
-//     return view('pages.admin.data-sub-kriteria.sub-criteria');
-// })->name('data-sub-kriteria.sub-criteria');
-
-// Route::get('data-alternatif', function () {
-//     return view('pages.admin.data-alternatif.alternatif');
-// })->name('data-alternatif.alternatif');
-
-// Route::get('penilaian-alternatif/assessment', function () {
-//     return view('pages.admin.penilaian-alternatif.assessment');
-// })->name('penilaian-alternatif.assessment');
-
-// Route::get('perhitungan', function () {
-//     return view('pages.admin.perhitungan.value-calculation');
-// })->name('perhitungan.value-calculation');
 
 Route::get('perankingan', function () {
     return view('pages.admin.perankingan.rank');
