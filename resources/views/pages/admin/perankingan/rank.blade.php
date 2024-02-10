@@ -51,13 +51,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>A1</td>
-                                <td>Fazril Arief Nugraha</td>
-                                <td>0.036</td>
-                                <td>1</td>
-                            </tr>
+                            @foreach ($results as $result)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $result->member->member_code }}</td>
+                                    <td>{{ $result->members_name }}</td>
+                                    <td class="fw-bold">{{ $result->result }}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

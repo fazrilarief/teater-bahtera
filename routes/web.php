@@ -3,6 +3,7 @@
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\RankController;
 use App\Http\Controllers\SubCriteriaController;
 use App\Http\Controllers\CalculateController;
 use Illuminate\Support\Facades\Route;
@@ -46,10 +47,9 @@ Route::resource('penilaian-alternatif/assessment', AssessmentController::class)
     ]);
 
 Route::get('perhitungan', [CalculateController::class, 'index'])->name('perhitungan.value-calculation');
+// Rute untuk melakukan perhitungan hasil akhir
 Route::post('perhitungan/hitung-nilai-akhir', [CalculateController::class, 'calculateResult'])->name('perhitungan.calculate-result');
 // Rute untuk melakukan perhitungan utility
 Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
 
-Route::get('perankingan', function () {
-    return view('pages.admin.perankingan.rank');
-})->name('perankingan.rank');
+Route::get('perankingan', [RankController::class, 'index'])->name('perankingan.rank');
