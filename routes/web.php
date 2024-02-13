@@ -53,3 +53,12 @@ Route::post('perhitungan/hitung-nilai-akhir', [CalculateController::class, 'calc
 Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
 
 Route::get('perankingan', [RankController::class, 'index'])->name('perankingan.rank');
+
+
+Route::get('login', function () {
+    return view('pages.auth.login');
+});
+
+Route::get('sign-up', function () {
+    return view('pages.auth.signup');
+});
