@@ -92,7 +92,8 @@ class CalculateController extends Controller
                 $nilaiC = $xuc * $xnc;
 
                 // Menambahkan nilaiC ke nilaiAkhir
-                $nilaiAkhir += $nilaiC;
+                $nilaiAkhir += $nilaiC * $xnc; // Menyesuaikan perhitungan
+
             }
 
             // Mencari atau membuat objek Result berdasarkan members_id

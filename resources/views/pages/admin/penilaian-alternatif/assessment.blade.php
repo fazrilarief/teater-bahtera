@@ -127,7 +127,7 @@
                                                                         @endphp
                                                                         @foreach ($res as $subCriteria)
                                                                             <option value="{{ $subCriteria->id }}">
-                                                                                {{ $subCriteria->sub_criteria_name }}
+                                                                                {{ $subCriteria->sub_criteria_name . ' | ' . ' Nilai : ' . $subCriteria->sub_criteria_value }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>

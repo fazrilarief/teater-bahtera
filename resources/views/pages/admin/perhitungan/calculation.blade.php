@@ -225,7 +225,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Alternatif</th>
-                                <th>Kode Alternatif</th>
                                 <th>Nilai Akhir</th>
                             </tr>
                         </thead>
@@ -234,7 +233,6 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $result->members_name }}</td>
-                                    <td>{{ $result->members_code }}</td>
                                     <td class="fw-bold">{{ number_format($result->result, 3) }}</td>
                                 </tr>
                             @endforeach
