@@ -55,6 +55,10 @@ Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])-
 Route::get('perankingan', [RankController::class, 'index'])->name('perankingan.rank');
 
 
+Route::get('tools/create-announcement', function () {
+    return view('pages.admin.tools.create-announcement');
+})->name('tools.create-announcement');
+
 Route::get('login', function () {
     return view('pages.auth.login');
 });
