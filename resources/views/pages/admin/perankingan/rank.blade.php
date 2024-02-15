@@ -31,10 +31,12 @@
                             <h1 class="card-title mb-0">Hasil Ranking</h1>
                         </div>
                         <div class="col-6 d-flex justify-content-end">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-title="Push Hasil Ranking ke Telegram Anggota">
-                                <i class="align-middle" data-feather="bell"></i> Push Notifikasi
-                            </button>
+                            @can('adminAndCoach')
+                                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-title="Push Hasil Ranking ke Telegram Anggota">
+                                    <i class="align-middle" data-feather="bell"></i> Push Notifikasi
+                                </button>
+                            @endcan
                         </div>
                     </div>
 

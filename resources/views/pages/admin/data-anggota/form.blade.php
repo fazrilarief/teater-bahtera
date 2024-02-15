@@ -53,12 +53,12 @@
                                     <label for="name" class="form-label">Nama Lengkap</label>
                                     <input type="text" name="member_name" class="form-control" autofocus
                                         value="{{ old('name') }}">
+                                    @error('name')
+                                        <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
+                                                data-feather="alert-circle"></i> {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                                @error('name')
-                                    <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
-                                            data-feather="alert-circle"></i> {{ $message }}
-                                    </div>
-                                @enderror
                                 <div class="mb-3">
                                     <label for="gender" class="form-label">Jenis Kelamin</label>
                                     <select name="gender" id="gender" class="form-select">
