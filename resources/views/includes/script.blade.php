@@ -6,6 +6,8 @@
 <script src="{{ asset('assets/vendor/DataTable/js/dataTables.bootstrap5.min.js') }}"></script>
 <script>
     new DataTable('#myTable');
+    new DataTable('#myTable1');
+    new DataTable('#myTable2');
 </script>
 
 {{-- Tooltip --}}
@@ -33,4 +35,21 @@
             defaultDate: defaultDate,
         });
     });
+</script>
+
+{{-- Maxlenth --}}
+<script>
+    var maxNis = document.getElementById('nis');
+    var maxNisn = document.getElementById('nisn');
+    var maxWahtsapp = document.getElementById('whatsapp')
+
+    maxNis.addEventListener('input', function() {
+        maxNis.value = maxNis.value.slice(0, 13);
+    })
+    maxNisn.addEventListener('input', function() {
+        maxNisn.value = maxNisn.value.slice(0, 10);
+    })
+    maxWahtsapp.addEventListener('input', function() {
+        maxWahtsapp.value = maxWahtsapp.value.slice(0, 13)
+    })
 </script>

@@ -1,6 +1,14 @@
 <?php
 
+use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\RankController;
+use App\Http\Controllers\SubCriteriaController;
+use App\Http\Controllers\CalculateController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,42 +21,82 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.admin.index');
-})->name('dashboard');
+// Auth::route();
 
-Route::get('data-anggota', function () {
-    return view('pages.admin.data-anggota.member');
-})->name('data-anggota.member');
+// Authenticate
+Route::middleware(['guest'])->group(function () {
+    // Login
+    Route::namespace('App\Http\Controllers\Auth')->group(function () {
+        // Login Index
+        Route::get('/', 'LoginController@show')->name('auth.login.show');
+        // Login Authenticate
+        Route::post('login', 'LoginController@login')->name('auth.login.login');
+    });
+});
+// Logout
+Route::post('logout', [LoginController::class, 'logout'])->name('auth.login.logout');
 
-Route::get('data-anggota/tambah-anggota', function () {
-    return view('pages.admin.data-anggota.form');
-})->name('data-anggota.form');
+// Sign-Up
+Route::get('sign-up', function () {
+    return view('pages.auth.signup');
+});
 
-Route::get('data-kriteria', function () {
-    return view('pages.admin.data-kriteria.criteria');
-})->name('data-kriteria.criteria');
+Route::middleware(['auth'])->group(function () {
+    
+    // Dashboard
+    Route::get('dashboard', function () {
+        return view('pages.admin.index');
+    })->name('dashboard');
 
-Route::get('data-kriteria/tambah-kriteria', function () {
-    return view('pages.admin.data-kriteria.form');
-})->name('data-kriteria.form');
+    // Perankingan
+    Route::get('perankingan', [RankController::class, 'index'])->name('perankingan.rank');
 
-Route::get('data-sub-kriteria', function () {
-    return view('pages.admin.data-sub-kriteria.sub-criteria');
-})->name('data-sub-kriteria.sub-criteria');
 
-Route::get('data-alternatif', function () {
-    return view('pages.admin.data-alternatif.alternatif');
-})->name('data-alternatif.alternatif');
+    // Middleware Admin and Coach
+    Route::group(['middleware' => ['isAdminAndCoach']], function(){
+        // Data Anggota
+        Route::resource('data-anggota', MemberController::class)
+            ->names([
+                'index' => 'data-anggota.member',
+                'create' => 'data-anggota.form',
+            ]);
 
-Route::get('penilaian-alternatif/assessment', function () {
-    return view('pages.admin.penilaian-alternatif.assessment');
-})->name('penilaian-alternatif.assessment');
+        // Export & Import Excel
+        Route::get('export/excel/', [MemberController::class, 'export'])->name('data-anggota.export');
 
-Route::get('perhitungan', function () {
-    return view('pages.admin.perhitungan.value-calculation');
-})->name('perhitungan.value-calculation');
+        // Tools
+        Route::get('tools/create-announcement', function () {
+            return view('pages.admin.tools.create-announcement');
+        })->name('tools.create-announcement');
+    });
 
-Route::get('perankingan', function () {
-    return view('pages.admin.perankingan.rank');
-})->name('perankingan.rank');
+
+    // MiddleWare Coach
+    Route::group(['middleware' => ['isCoach']], function () {
+        // Assessment
+        Route::resource('penilaian-alternatif/assessment', AssessmentController::class)
+            ->names([
+                'index' => 'penilaian-alternatif.assessment',
+            ]);
+
+            // Data Krtieria
+        Route::resource('data-kriteria', CriteriaController::class)
+        ->names([
+            'index' => 'data-kriteria.criteria',
+            'create' => 'data-kriteria.form',
+        ]);
+
+        // Data Sub Krtieria
+        Route::resource('data-sub-criteria', SubCriteriaController::class)
+        ->names([
+            'index' => 'data-sub-kriteria.sub-criteria',
+        ]);
+
+        // Perhitungan
+        Route::get('perhitungan', [CalculateController::class, 'index'])->name('perhitungan.value-calculation');
+        // Perhitungan Result
+        Route::post('perhitungan/hitung-nilai-akhir', [CalculateController::class, 'calculateResult'])->name('perhitungan.calculate-result');
+        // Perhitungan Utility
+        Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
+    });
+});
