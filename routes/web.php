@@ -42,7 +42,7 @@ Route::get('sign-up', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    
+
     // Dashboard
     Route::get('dashboard', function () {
         return view('pages.admin.index');
@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     // Middleware Admin and Coach
-    Route::group(['middleware' => ['isAdminAndCoach']], function(){
+    Route::group(['middleware' => ['isAdminAndCoach']], function () {
         // Data Anggota
         Route::resource('data-anggota', MemberController::class)
             ->names([
@@ -79,18 +79,18 @@ Route::middleware(['auth'])->group(function () {
                 'index' => 'penilaian-alternatif.assessment',
             ]);
 
-            // Data Krtieria
+        // Data Krtieria
         Route::resource('data-kriteria', CriteriaController::class)
-        ->names([
-            'index' => 'data-kriteria.criteria',
-            'create' => 'data-kriteria.form',
-        ]);
+            ->names([
+                'index' => 'data-kriteria.criteria',
+                'create' => 'data-kriteria.form',
+            ]);
 
         // Data Sub Krtieria
         Route::resource('data-sub-criteria', SubCriteriaController::class)
-        ->names([
-            'index' => 'data-sub-kriteria.sub-criteria',
-        ]);
+            ->names([
+                'index' => 'data-sub-kriteria.sub-criteria',
+            ]);
 
         // Perhitungan
         Route::get('perhitungan', [CalculateController::class, 'index'])->name('perhitungan.value-calculation');
@@ -98,5 +98,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('perhitungan/hitung-nilai-akhir', [CalculateController::class, 'calculateResult'])->name('perhitungan.calculate-result');
         // Perhitungan Utility
         Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
+    });
+
+    Route::namespace('App\Http\Controllers\user')->group(function () {
+        Route::get('admin', 'AdminController@index')->name('user.admin');
+        Route::post('admin/store', 'AdminController@store')->name('user.admin.store');
+        Route::put('admin/update/{id}', 'AdminController@update')->name('user.admin.update');
+        Route::delete('admin/destroy/{id}', 'AdminController@destroy')->name('user.admin.destroy');
+
+        Route::get('member', 'MemberController@index')->name('user.member');
     });
 });

@@ -8,6 +8,8 @@
     new DataTable('#myTable');
     new DataTable('#myTable1');
     new DataTable('#myTable2');
+    new DataTable('#myTable3');
+    new DataTable('#myTable4');
 </script>
 
 {{-- Tooltip --}}
