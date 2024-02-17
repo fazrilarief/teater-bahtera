@@ -41,7 +41,7 @@
                 </div>
                 <div class="card-header pt-0">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-lg-6 col-md-8">
                             <a href="" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#tambahDataAdmin">
                                 <i class="align-middle" data-feather="plus"></i> Tambah Data
@@ -51,7 +51,7 @@
                 </div>
                 <div class="card-body table-responsive">
                     <table id="myTable3" class="table table-bordered table-hover my-0">
-                        <thead class="table-dark">
+                        <thead class="bg-body-secondary">
                             <tr>
                                 <th>No</th>
                                 <th>Username</th>
