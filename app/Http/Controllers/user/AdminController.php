@@ -24,7 +24,7 @@ class AdminController extends Controller
         $admin = User::create($validated);
 
         if ($admin) {
-            Alert::success('Sukses', 'Data sub kriteria berhasil ditambahkan');
+            Alert::success('Sukses', 'Data akses admin berhasil ditambahkan');
             return redirect()->back();
         } else {
             return abort(500);
@@ -45,10 +45,10 @@ class AdminController extends Controller
             'username' => $request->input('username'),
             'email' => $request->input('email'),
             'role' => $request->input('role'),
-         ]);
+        ]);
 
-        if($admin){
-             Alert::success('Success', 'Berhasil Merubah Data');
+        if ($admin) {
+            Alert::success('Success', 'Berhasil Merubah Data');
             return redirect()->back();
         } else {
             return abort(500);
@@ -61,10 +61,10 @@ class AdminController extends Controller
 
         $admin->delete();
 
-        if($admin){
+        if ($admin) {
             Alert::warning('Warning', 'Anda baru saja menghapus data!');
             return redirect()->back();
-        }else{
+        } else {
             return abort(500);
         }
     }

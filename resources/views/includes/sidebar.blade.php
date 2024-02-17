@@ -126,8 +126,8 @@
 
                 <li class="sidebar-header">User</li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="maps-google.html">
+                <li class="sidebar-item {{ request()->routeIs('user.member') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('user.member') }}">
                         <i class="align-middle" data-feather="user-plus"></i>
                         <span class="align-middle">Member</span>
                     </a>

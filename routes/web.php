@@ -37,10 +37,12 @@ Route::middleware(['guest'])->group(function () {
 Route::post('logout', [LoginController::class, 'logout'])->name('auth.login.logout');
 
 // Sign-Up
-Route::get('sign-up', function () {
-    return view('pages.auth.signup');
-});
+// Route::get('sign-up', function () {
+//     return view('pages.auth.signup');
+// });
 
+
+/* MiddleWare Global Scope */
 Route::middleware(['auth'])->group(function () {
 
     // Dashboard
@@ -52,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('perankingan', [RankController::class, 'index'])->name('perankingan.rank');
 
 
-    // Middleware Admin and Coach
+    /* MiddleWare Admin and Coach Scope */
     Route::group(['middleware' => ['isAdminAndCoach']], function () {
         // Data Anggota
         Route::resource('data-anggota', MemberController::class)
@@ -68,10 +70,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('tools/create-announcement', function () {
             return view('pages.admin.tools.create-announcement');
         })->name('tools.create-announcement');
+
+        // Member Access
+        Route::namespace('App\Http\Controllers\user')->group(function () {
+            Route::get('member', 'MemberController@index')->name('user.member');
+            Route::post('member/create', 'MemberController@store')->name('user.member.store');
+            Route::put('member/update/{id}', 'MemberController@update')->name('user.member.update');
+            Route::delete('member/delete/{id}', 'MemberController@destroy')->name('user.member.destroy');
+        });
     });
 
 
-    // MiddleWare Coach
+    /* MiddleWare Coach Scope */
     Route::group(['middleware' => ['isCoach']], function () {
         // Assessment
         Route::resource('penilaian-alternatif/assessment', AssessmentController::class)
@@ -98,14 +108,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('perhitungan/hitung-nilai-akhir', [CalculateController::class, 'calculateResult'])->name('perhitungan.calculate-result');
         // Perhitungan Utility
         Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
-    });
 
-    Route::namespace('App\Http\Controllers\user')->group(function () {
-        Route::get('admin', 'AdminController@index')->name('user.admin');
-        Route::post('admin/store', 'AdminController@store')->name('user.admin.store');
-        Route::put('admin/update/{id}', 'AdminController@update')->name('user.admin.update');
-        Route::delete('admin/destroy/{id}', 'AdminController@destroy')->name('user.admin.destroy');
-
-        Route::get('member', 'MemberController@index')->name('user.member');
+        // Admin Access
+        Route::namespace('App\Http\Controllers\user')->group(function () {
+            // Show Admin
+            Route::get('admin', 'AdminController@index')->name('user.admin');
+            // Create Admin
+            Route::post('admin/create', 'AdminController@store')->name('user.admin.store');
+            // Edit Admin
+            Route::put('admin/update/{id}', 'AdminController@update')->name('user.admin.update');
+            // Destroy Admin
+            Route::delete('admin/destroy/{id}', 'AdminController@destroy')->name('user.admin.destroy');
+        });
     });
 });
