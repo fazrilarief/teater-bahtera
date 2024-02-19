@@ -32,10 +32,21 @@
                         </div>
                         <div class="col-6 d-flex justify-content-end">
                             @can('adminAndCoach')
-                                <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    data-bs-title="Push Hasil Ranking ke Telegram Anggota">
-                                    <i class="align-middle" data-feather="bell"></i> Push Notifikasi
-                                </button>
+                                <div class="row">
+                                    <div class="col d-flex gap-2">
+                                        <form action="{{ route('download.pdf') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-title="Export to .pdf">
+                                                <i class="align-middle" data-feather="file-text"></i> Download .pdf
+                                            </button>
+                                        </form>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" data-bs-title="Push Hasil Ranking ke Telegram Anggota">
+                                            <i class="align-middle" data-feather="bell"></i> Push Notifikasi
+                                        </button>
+                                    </div>
+                                </div>
                             @endcan
                         </div>
                     </div>

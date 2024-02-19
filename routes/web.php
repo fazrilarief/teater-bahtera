@@ -51,7 +51,12 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     // Perankingan
-    Route::get('perankingan', [RankController::class, 'index'])->name('perankingan.rank');
+    Route::namespace('App\Http\Controllers')->group(function(){
+        // View Rank
+        Route::get('perankingan', 'RankController@index')->name('perankingan.rank');
+        // Download PDF
+        Route::post('results/pdf', 'RankController@downloadPdf')->name('download.pdf');
+    });
 
 
     /* MiddleWare Admin and Coach Scope */
