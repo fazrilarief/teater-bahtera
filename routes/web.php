@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     // Perankingan
-    Route::namespace('App\Http\Controllers')->group(function(){
+    Route::namespace('App\Http\Controllers')->group(function () {
         // View Rank
         Route::get('perankingan', 'RankController@index')->name('perankingan.rank');
         // Download PDF
@@ -72,9 +72,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('export/excel/', [MemberController::class, 'export'])->name('data-anggota.export');
 
         // Tools
-        Route::get('tools/create-announcement', function () {
-            return view('pages.admin.tools.create-announcement');
-        })->name('tools.create-announcement');
+        Route::namespace('App\Http\Controllers\Telegram')->group(function () {
+            Route::get('tools/create-announcement', 'TelegramBotController@index')->name('tools.create-announcement');
+            Route::post('tools/create-announcement/send-message', 'TelegramBotController@sendMessage')->name('sendMessage');
+        });
 
         // Member Access
         Route::namespace('App\Http\Controllers\user')->group(function () {
