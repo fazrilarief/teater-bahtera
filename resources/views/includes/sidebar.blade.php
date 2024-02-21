@@ -75,15 +75,15 @@
 
                 <li class="sidebar-header">User</li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="charts-chartjs.html">
+                <li class="sidebar-item {{ request()->routeIs('user.admin') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('user.admin') }}">
                         <i class="align-middle" data-feather="user-check"></i>
                         <span class="align-middle">Admin</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="maps-google.html">
+                <li class="sidebar-item {{ request()->routeIs('user.member') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('user.member') }}">
                         <i class="align-middle" data-feather="user-plus"></i>
                         <span class="align-middle">Member</span>
                     </a>
@@ -126,8 +126,8 @@
 
                 <li class="sidebar-header">User</li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="maps-google.html">
+                <li class="sidebar-item {{ request()->routeIs('user.member') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('user.member') }}">
                         <i class="align-middle" data-feather="user-plus"></i>
                         <span class="align-middle">Member</span>
                     </a>

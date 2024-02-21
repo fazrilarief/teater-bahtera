@@ -5,11 +5,12 @@
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
-            <li class="nav-item dropdown">
+            <li class="dropdown">
                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                    <i class="align-middle" data-feather="settings"></i>
+                    <img src="{{ asset('assets/img/avatars/jriks.svg') }}" class="avatar img-fluid rounded me-1"
+                        alt="Charles Hall" style="height: 35px" />
+                    <span class="text-dark fs-5">{{ auth()->user()->username }}</span>
                 </a>
-
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                     <img src="{{ asset('assets/img/avatars/jriks.svg') }}" class="avatar img-fluid rounded me-1"
                         alt="Charles Hall" />

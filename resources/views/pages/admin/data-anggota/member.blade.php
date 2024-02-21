@@ -114,7 +114,7 @@
                                 <div class="modal fade" id="lihatData{{ $member->id }}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1"
                                     aria-labelledby="staticBackdropLabel{{ $member->id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="staticBackdropLabel{{ $member->id }}">
@@ -125,64 +125,64 @@
                                             </div>
                                             <div class="modal-body">
                                                 <dl class="row">
-                                                    <dt class="col-sm-3">Nama</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->member_name }}</dd>
+                                                    <dt class="col-3">Nama</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">{{ $member->member_name }}</dd>
 
-                                                    <dt class="col-sm-3">Jenis Kelamin</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->gender }}</dd>
+                                                    <dt class="col-3">Jenis Kelamin</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">{{ $member->gender }}</dd>
 
-                                                    <dt class="col-sm-3">Code</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->member_code }}</dd>
+                                                    <dt class="col-3">Code</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">{{ $member->member_code }}</dd>
 
-                                                    <dt class="col-sm-3">NIS</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->nis }}</dd>
+                                                    <dt class="col-3">NIS</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">{{ $member->nis }}</dd>
 
-                                                    <dt class="col-sm-3">NISN</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->nisn }}</dd>
+                                                    <dt class="col-3">NISN</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">{{ $member->nisn }}</dd>
 
-                                                    <dt class="col-sm-3">Whatsapp</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->whatsapp }}</dd>
+                                                    <dt class="col-3">Whatsapp</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">{{ $member->whatsapp }}</dd>
 
-                                                    <dt class="col-sm-3">E-Mail</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->email }}</dd>
+                                                    <dt class="col-3">E-Mail</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">{{ $member->email }}</dd>
 
-                                                    <dt class="col-sm-3">Tanggal Lahir</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">
+                                                    <dt class="col-3">Tanggal Lahir</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">
                                                         {{ Carbon::parse($member->birthday)->format('d/m/Y') }}
                                                     </dd>
 
-                                                    <dt class="col-sm-3">Kelas</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">
+                                                    <dt class="col-3">Kelas</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">
                                                         {{ $member->grade . ' ' . $member->major . ' ' . $member->class_code }}
                                                     </dd>
 
-                                                    <dt class="col-sm-3">Struktur</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->structure }}</dd>
+                                                    <dt class="col-3">Struktur</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">{{ $member->structure }}</dd>
 
-                                                    <dt class="col-sm-3">Minat Seni</dt>
-                                                    <dt class="col-sm-1">:</dt>
-                                                    <dd class="col-sm-8">{{ $member->interest }}</dd>
+                                                    <dt class="col-3">Minat Seni</dt>
+                                                    <dt class="col-1">:</dt>
+                                                    <dd class="col-8">{{ $member->interest }}</dd>
 
-                                                    <dt class="col-sm-3 text-success">Created at</dt>
-                                                    <dt class="col-sm-1 text-success">:</dt>
-                                                    <dd class="col-sm-8 text-success">
+                                                    <dt class="col-3 text-success">Created</dt>
+                                                    <dt class="col-1 text-success">:</dt>
+                                                    <dd class="col-8 text-success">
                                                         {{ Carbon::parse($member->created_at)->format('d/m/Y') }} /
                                                         {{ $member->created_at->diffforhumans() }}
                                                     </dd>
 
-                                                    <dt class="col-sm-3 text-warning">Updated</dt>
-                                                    <dt class="col-sm-1 text-warning">:</dt>
-                                                    <dd class="col-sm-8 text-warning">
+                                                    <dt class="col-3 text-warning">Updated</dt>
+                                                    <dt class="col-1 text-warning">:</dt>
+                                                    <dd class="col-8 text-warning">
                                                         {{ Carbon::parse($member->updated_at)->format('d/m/Y') }} /
                                                         {{ $member->updated_at->diffforhumans() }}
                                                     </dd>

@@ -37,23 +37,30 @@ Route::middleware(['guest'])->group(function () {
 Route::post('logout', [LoginController::class, 'logout'])->name('auth.login.logout');
 
 // Sign-Up
-Route::get('sign-up', function () {
-    return view('pages.auth.signup');
-});
+// Route::get('sign-up', function () {
+//     return view('pages.auth.signup');
+// });
 
+
+/* MiddleWare Global Scope */
 Route::middleware(['auth'])->group(function () {
-    
+
     // Dashboard
     Route::get('dashboard', function () {
         return view('pages.admin.index');
     })->name('dashboard');
 
     // Perankingan
-    Route::get('perankingan', [RankController::class, 'index'])->name('perankingan.rank');
+    Route::namespace('App\Http\Controllers')->group(function () {
+        // View Rank
+        Route::get('perankingan', 'RankController@index')->name('perankingan.rank');
+        // Download PDF
+        Route::post('results/pdf', 'RankController@downloadPdf')->name('download.pdf');
+    });
 
 
-    // Middleware Admin and Coach
-    Route::group(['middleware' => ['isAdminAndCoach']], function(){
+    /* MiddleWare Admin and Coach Scope */
+    Route::group(['middleware' => ['isAdminAndCoach']], function () {
         // Data Anggota
         Route::resource('data-anggota', MemberController::class)
             ->names([
@@ -65,13 +72,22 @@ Route::middleware(['auth'])->group(function () {
         Route::get('export/excel/', [MemberController::class, 'export'])->name('data-anggota.export');
 
         // Tools
-        Route::get('tools/create-announcement', function () {
-            return view('pages.admin.tools.create-announcement');
-        })->name('tools.create-announcement');
+        Route::namespace('App\Http\Controllers\Telegram')->group(function () {
+            Route::get('tools/create-announcement', 'TelegramBotController@index')->name('tools.create-announcement');
+            Route::post('tools/create-announcement/send-message', 'TelegramBotController@sendMessage')->name('sendMessage');
+        });
+
+        // Member Access
+        Route::namespace('App\Http\Controllers\user')->group(function () {
+            Route::get('member', 'MemberController@index')->name('user.member');
+            Route::post('member/create', 'MemberController@store')->name('user.member.store');
+            Route::put('member/update/{id}', 'MemberController@update')->name('user.member.update');
+            Route::delete('member/delete/{id}', 'MemberController@destroy')->name('user.member.destroy');
+        });
     });
 
 
-    // MiddleWare Coach
+    /* MiddleWare Coach Scope */
     Route::group(['middleware' => ['isCoach']], function () {
         // Assessment
         Route::resource('penilaian-alternatif/assessment', AssessmentController::class)
@@ -79,18 +95,18 @@ Route::middleware(['auth'])->group(function () {
                 'index' => 'penilaian-alternatif.assessment',
             ]);
 
-            // Data Krtieria
+        // Data Krtieria
         Route::resource('data-kriteria', CriteriaController::class)
-        ->names([
-            'index' => 'data-kriteria.criteria',
-            'create' => 'data-kriteria.form',
-        ]);
+            ->names([
+                'index' => 'data-kriteria.criteria',
+                'create' => 'data-kriteria.form',
+            ]);
 
         // Data Sub Krtieria
         Route::resource('data-sub-criteria', SubCriteriaController::class)
-        ->names([
-            'index' => 'data-sub-kriteria.sub-criteria',
-        ]);
+            ->names([
+                'index' => 'data-sub-kriteria.sub-criteria',
+            ]);
 
         // Perhitungan
         Route::get('perhitungan', [CalculateController::class, 'index'])->name('perhitungan.value-calculation');
@@ -98,5 +114,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('perhitungan/hitung-nilai-akhir', [CalculateController::class, 'calculateResult'])->name('perhitungan.calculate-result');
         // Perhitungan Utility
         Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
+
+        // Admin Access
+        Route::namespace('App\Http\Controllers\user')->group(function () {
+            // Show Admin
+            Route::get('admin', 'AdminController@index')->name('user.admin');
+            // Create Admin
+            Route::post('admin/create', 'AdminController@store')->name('user.admin.store');
+            // Edit Admin
+            Route::put('admin/update/{id}', 'AdminController@update')->name('user.admin.update');
+            // Destroy Admin
+            Route::delete('admin/destroy/{id}', 'AdminController@destroy')->name('user.admin.destroy');
+        });
     });
 });
