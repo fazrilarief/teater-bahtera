@@ -30,7 +30,7 @@
                     <h1 class="card-title mb-0">Broadcast</h1>
                 </div>
                 <div class="card-body table-responsive">
-                    <form action="{{ route('sendMessage') }}" method="POST">
+                    <form action="{{ route('sendMessage') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -39,8 +39,10 @@
                                     <input type="file" name="file" class="form-control">
                                 </div>
                                 <div class="mb-3">
+                                    <label for="template" class="form-label">Template</label>
                                     <select name="template" id="template" class="form-select" onchange="updateTextarea()">
                                         <option selected disabled>Pilih Template</option>
+                                        <option value="report">Report</option>
                                         <option value="woro">Woro-Woro Latihan!</option>
                                         <option value="kustom">Kustom Pesan</option>
                                     </select>
@@ -73,6 +75,10 @@
             let selectedTemplate = templateSelect.value;
 
             switch (selectedTemplate) {
+                case "report":
+                    messageTextarea.value =
+                        `🏆 Hore! Report perankingan sudah siap!Yuk, simak pencapaian hebat tim kita. Teruskan semangatnya! 💪\n\nForm feedback kepelatihan : \n`;
+                    break;
                 case "woro":
                     messageTextarea.value =
                         `Assalamualaikum Wr.Wb\nٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّٰهِ وَبَرَكَاتُه\n\nWoroo woroo... 📣\nAnnyeong haseyo, chinggu yaaa 👋\n\nPengumuman untuk awak teater bahtera besok akan diadakan latihan mingguan pada :\n\nHari : Sabtu, 17 Februari 2024\nWaktu : 09.00 WIB\nTempat : Sekolah\n\n👗 Dress : baju latihan, celana training, dan kerudung hitam ✨\n\nDitunggu kehadirannya yaa kakak alumni 🤩\n\nSekian pemberitahuan hari ini\n\n🎭 Belajar untuk hidup, hidup untuk belajar, maka pelajarilah hidup\n\nSalam teater, bahtera!!⛵\n\nWassalamu'alaikum Wr.Wb\nوالسلام عليكم ورحمة الله وبركاته`;
