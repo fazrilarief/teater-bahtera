@@ -4,7 +4,7 @@ use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CriteriaController;
-use App\Http\Controllers\RankController;
+// use App\Http\Controllers\RankController;
 use App\Http\Controllers\SubCriteriaController;
 use App\Http\Controllers\CalculateController;
 use Illuminate\Support\Facades\Route;
