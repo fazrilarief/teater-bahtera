@@ -78,7 +78,7 @@ Route::middleware(['auth'])->group(function () {
         });
 
         // Member Access
-        Route::namespace('App\Http\Controllers\user')->group(function () {
+        Route::namespace('App\Http\Controllers\User')->group(function () {
             Route::get('member', 'MemberController@index')->name('user.member');
             Route::post('member/create', 'MemberController@store')->name('user.member.store');
             Route::put('member/update/{id}', 'MemberController@update')->name('user.member.update');
@@ -116,7 +116,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
 
         // Admin Access
-        Route::namespace('App\Http\Controllers\user')->group(function () {
+        Route::namespace('App\Http\Controllers\User')->group(function () {
             // Show Admin
             Route::get('admin', 'AdminController@index')->name('user.admin');
             // Create Admin
