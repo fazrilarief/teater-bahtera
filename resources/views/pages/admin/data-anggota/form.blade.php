@@ -32,7 +32,7 @@
 
         <div class="container-fluid p-0 mt-4">
             <div class="card shadow-lg">
-                @if ($errors->any())
+                {{-- @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -40,7 +40,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif --}}
                 <div class="card-header">
                     <h2 class="fw-bold">Tambah Data</h2>
                 </div>
@@ -53,7 +53,7 @@
                                     <label for="name" class="form-label">Nama Lengkap</label>
                                     <input type="text" name="member_name" class="form-control" autofocus
                                         value="{{ old('name') }}">
-                                    @error('name')
+                                    @error('member_name')
                                         <div class="alert alert-danger p-1" role="alert"><i class="align-middle"
                                                 data-feather="alert-circle"></i> {{ $message }}
                                         </div>

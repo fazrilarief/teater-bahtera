@@ -27,7 +27,7 @@
         <div class="container-fluid p-0 mt-4">
 
             {{-- Nilai Data Alternatif --}}
-            <div class="card shadow-lg">
+            <div class="card shadow-lg card-success-border-top">
                 <div class="card-header">
                     <h4>Nilai Data Alternatif</h4>
                 </div>
@@ -69,7 +69,7 @@
             {{-- Bobot Kriteria --}}
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
-                    <div class="card shadow-lg">
+                    <div class="card shadow-lg card-success-border-top">
                         <div class="card-header">
                             <h4>Bobot Kriteria</h4>
                         </div>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12">
-                    <div class="card shadow-lg">
+                    <div class="card shadow-lg card-success-border-top">
                         <div class="card-header">
                             <h4>Normalisasi Bobot Kriteria</h4>
                         </div>
@@ -148,7 +148,7 @@
             {{-- Bobot Kriteria Ends --}}
 
             {{-- Nilai Utility --}}
-            <div class="card shadow-lg">
+            <div class="card shadow-lg card-warning-border-top">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-4">
@@ -202,24 +202,31 @@
             {{-- Nilai Utility Ends --}}
 
             {{-- Hasil Akhir --}}
-            <div class="card shadow-lg">
+            <div class="card shadow-lg card-primary-border-top">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-9">
                             <h4>Hasil Akhir</h4>
                         </div>
-                        <div class="col-8 d-flex justify-content-end">
-                            {{-- Tombol untuk melakukan perhitungan dan menyimpan nilai utility --}}
+                        <div class="col-3">
                             <form action="{{ route('perhitungan.calculate-result') }}" method="post">
                                 @csrf
-                                <button type="submit" class="btn btn-success">
-                                    Hitung Nilai Akhir <i class="align-middle" data-feather='chevrons-right'></i>
-                                </button>
+                                <div class="input-group gap-2">
+                                    <select name="periode" id="period" class="form-select" onchange="isPeriodSelected()">
+                                        <option selected value="none">Pilih Periode</option>
+                                        @foreach ($periods as $period)
+                                            <option value="{{ $period->periode }}">{{ $period->periode }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" id="calculateButton" class="btn btn-success">
+                                        Hitung Nilai Akhir <i class="align-middle" data-feather='chevrons-right'></i>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class="card-body table-responsive">
+                {{-- <div class="card-body table-responsive">
                     <table id="myTable2" class="table table-responsive table-hover my-0">
                         <thead>
                             <tr>
@@ -238,10 +245,28 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div> --}}
             </div>
             {{-- Hasil Akhir Ends --}}
 
         </div>
     </main>
+
+    <script>
+        window.onload = function() {
+            isPeriodSelected();
+        };
+
+        function isPeriodSelected() {
+            var periodSelect = document.getElementById('period');
+            var calculateButton = document.getElementById('calculateButton');
+            var selectedPeriod = periodSelect.value;
+
+            if (selectedPeriod == 'none') {
+                calculateButton.classList.add('disabled');
+            } else {
+                calculateButton.classList.remove('disabled')
+            }
+        }
+    </script>
 @endsection

@@ -8,6 +8,7 @@
         <hr class="mt-0">
         <ul class="sidebar-nav">
 
+            {{-- Sidebar Access Coach --}}
             @can('coach')
                 <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('dashboard') }}">
@@ -43,6 +44,13 @@
 
                 <li class="sidebar-header">Perhitungan SMART</li>
 
+                <li class="sidebar-item {{ request()->routeIs('data-periode') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('data-periode') }}">
+                        <i class="align-middle" data-feather="calendar"></i>
+                        <span class="align-middle">Periode</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item {{ request()->routeIs('penilaian-alternatif.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('penilaian-alternatif.assessment') }}">
                         <i class="align-middle" data-feather="edit"></i>
@@ -64,7 +72,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-header">Tool</li>
+                <li class="sidebar-header">Alat</li>
 
                 <li class="sidebar-item {{ request()->routeIs('tools.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('tools.create-announcement') }}">
@@ -73,7 +81,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-header">User</li>
+                <li class="sidebar-header">Pengguna</li>
 
                 <li class="sidebar-item {{ request()->routeIs('user.admin') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('user.admin') }}">
@@ -89,7 +97,9 @@
                     </a>
                 </li>
             @endcan
+            {{-- Sidebar Access Coach Ends --}}
 
+            {{-- Sidebar Access Admin --}}
             @can('admin')
                 <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('dashboard') }}">
@@ -116,7 +126,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-header">Tools</li>
+                <li class="sidebar-header">Alat</li>
                 <li class="sidebar-item {{ request()->routeIs('tools.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('tools.create-announcement') }}">
                         <i class="align-middle" data-feather="bell"></i>
@@ -124,7 +134,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-header">User</li>
+                <li class="sidebar-header">Pengguna</li>
 
                 <li class="sidebar-item {{ request()->routeIs('user.member') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('user.member') }}">
@@ -133,7 +143,9 @@
                     </a>
                 </li>
             @endcan
+            {{-- Sidebar Admin Access Ends --}}
 
+            {{-- Sidebar Member Access --}}
             @can('member')
                 <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('dashboard') }}">
@@ -147,10 +159,11 @@
                 <li class="sidebar-item {{ request()->routeIs('perankingan.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('perankingan.rank') }}">
                         <i class="align-middle" data-feather="bar-chart-2"></i>
-                        <span class="align-middle">Ranking</span>
+                        <span class="align-middle">Peringkat</span>
                     </a>
                 </li>
             @endcan
+            {{-- Sidebar Member Access Ends --}}
         </ul>
 
     </div>
