@@ -27,25 +27,62 @@
             <div class="card shadow-lg">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-6">
-                            <h1 class="card-title mb-0">Hasil Ranking</h1>
+                        <div class="col-lg-3 col-sm-12">
+                            <h1 class="card-title mb-2">Hasil Ranking</h1>
                         </div>
-                        <div class="col-6 d-flex justify-content-end">
+                        <div class="col-lg-9 col-sm-12 d-flex justify-content-end">
                             @can('adminAndCoach')
                                 <div class="row">
-                                    <div class="col d-flex gap-2">
+                                    <div class="col-lg-5 col-sm-12">
+                                        <form action="{{ route('perankingan.rank') }}" method="GET"
+                                            class="d-flex text-nowrap">
+                                            @csrf
+                                            <select name="periode" id="periode" class="form-select rounded-none">
+                                                <option disabled selected value="none">Pilih Periode</option>
+                                                @foreach ($periods as $period)
+                                                    <option value="{{ $period->periode }}">{{ $period->periode }}</option>
+                                                @endforeach
+                                            </select>
+                                            <button type="submit" class="btn-filter btn btn-success"><i class="align-middle"
+                                                    data-feather="search"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-12 d-flex gap-2">
                                         <form action="{{ route('download.pdf') }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip"
+                                            <button type="submit" class="btn btn-danger text-nowrap" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" data-bs-title="Export to .pdf">
                                                 <i class="align-middle" data-feather="file-text"></i> Download .pdf
                                             </button>
                                         </form>
-                                        <button type="button" class="btn btn-primary" data-bs-placement="top"
+                                        <button type="button" class="btn btn-primary text-nowrap" data-bs-placement="top"
                                             data-bs-title="Push Hasil Ranking ke Telegram Anggota" data-bs-toggle="modal"
                                             data-bs-target="#staticBackdrop">
                                             <i class="align-middle" data-feather="bell"></i> Push Notifikasi
                                         </button>
+                                    </div>
+                                </div>
+                            @endcan
+
+                            @can('member')
+                                <div class="row">
+                                    <div class="col-sm-12 d-flex gap-2">
+                                        <div class="filter-data">
+                                            <form action="{{ route('perankingan.rank') }}" method="GET"
+                                                class="d-flex text-nowrap">
+                                                @csrf
+                                                <select name="periode" id="periode" class="form-select rounded-none">
+                                                    <option disabled selected value="none">Pilih Periode</option>
+                                                    @foreach ($periods as $period)
+                                                        <option value="{{ $period->periode }}">
+                                                            {{ $period->periode }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <button type="submit" class="btn-filter btn btn-success"><i
+                                                        class="align-middle" data-feather="search"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             @endcan
@@ -62,6 +99,7 @@
                                 <th>Nama</th>
                                 <th>Nilai Akhir</th>
                                 <th>Ranking</th>
+                                <th>Periode</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,6 +110,7 @@
                                     <td>{{ $result->members_name }}</td>
                                     <td class="fw-bold">{{ $result->result }}</td>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $result->period }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -101,7 +140,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="template" class="form-label">Template</label>
-                                    <select name="template" id="template" class="form-select" onchange="updateTextarea()">
+                                    <select name="template" id="template" class="form-select"
+                                        onchange="updateTextarea()">
                                         <option selected disabled>Pilih Template</option>
                                         <option value="report">Report</option>
                                         <option value="kustom">Kustom Pesan</option>

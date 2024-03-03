@@ -4,11 +4,12 @@ use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CriteriaController;
-// use App\Http\Controllers\RankController;
 use App\Http\Controllers\SubCriteriaController;
-use App\Http\Controllers\CalculateController;
+use App\Http\Controllers\PeriodController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+// use App\Http\Controllers\CalculateController;
+// use Illuminate\Support\Facades\Auth;
+// use App\Http\Controllers\RankController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,14 +109,33 @@ Route::middleware(['auth'])->group(function () {
                 'index' => 'data-sub-kriteria.sub-criteria',
             ]);
 
-        // Perhitungan
-        Route::get('perhitungan', [CalculateController::class, 'index'])->name('perhitungan.value-calculation');
-        // Perhitungan Result
-        Route::post('perhitungan/hitung-nilai-akhir', [CalculateController::class, 'calculateResult'])->name('perhitungan.calculate-result');
-        // Perhitungan Utility
-        Route::get('/hitung-utility', [CalculateController::class, 'calculateUtility'])->name('hitung.utility');
+        // Data Periode
+        Route::namespace('App\Http\Controllers')->group(function () {
+            // Show Periode
+            Route::get('periode', 'PeriodController@index')->name('period.index');
+            // Create Periode
+            Route::post('periode/store', 'PeriodController@store')->name('period.store');
+            // Delete Periode
+            Route::delete('periode/destroy', 'PeriodController@destroy')->name('period.destroy');
+        });
 
-        // Admin Access
+        // Data Periode Perhitungan
+        Route::resource('periode', PeriodController::class)
+            ->names([
+                'index' => 'data-periode',
+            ]);
+
+        // Perhitungan SMART
+        Route::namespace('App\Http\Controllers')->group(function () {
+            // Perhitungan
+            Route::get('perhitungan', 'CalculateController@index')->name('perhitungan.value-calculation');
+            // Perhitungan Utility
+            Route::get('perhitungan/nilai-utility', 'CalculateController@calculateUtility')->name('hitung.utility');
+            // Perhitungan Result
+            Route::post('perhitungan/nilai-akhir', 'CalculateController@calculateResult')->name('perhitungan.calculate-result');
+        });
+
+        // Akses Admin
         Route::namespace('App\Http\Controllers\User')->group(function () {
             // Show Admin
             Route::get('admin', 'AdminController@index')->name('user.admin');

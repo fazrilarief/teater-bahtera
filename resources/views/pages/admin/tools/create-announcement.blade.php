@@ -70,9 +70,9 @@
 
     <script>
         function updateTextarea() {
-            let templateSelect = document.getElementById("template");
-            let messageTextarea = document.getElementById("message");
-            let selectedTemplate = templateSelect.value;
+            var templateSelect = document.getElementById("template");
+            var messageTextarea = document.getElementById("message");
+            var selectedTemplate = templateSelect.value;
 
             switch (selectedTemplate) {
                 case "report":
@@ -81,7 +81,7 @@
                     break;
                 case "woro":
                     messageTextarea.value =
-                        `Assalamualaikum Wr.Wb\nٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّٰهِ وَبَرَكَاتُه\n\nWoroo woroo... 📣\nAnnyeong haseyo, chinggu yaaa 👋\n\nPengumuman untuk awak teater bahtera besok akan diadakan latihan mingguan pada :\n\nHari : Sabtu, 17 Februari 2024\nWaktu : 09.00 WIB\nTempat : Sekolah\n\n👗 Dress : baju latihan, celana training, dan kerudung hitam ✨\n\nDitunggu kehadirannya yaa kakak alumni 🤩\n\nSekian pemberitahuan hari ini\n\n🎭 Belajar untuk hidup, hidup untuk belajar, maka pelajarilah hidup\n\nSalam teater, bahtera!!⛵\n\nWassalamu'alaikum Wr.Wb\nوالسلام عليكم ورحمة الله وبركاته`;
+                        `Assalamualaikum Wr.Wb\nٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّٰهِ وَبَرَكَاتُه\n\nWoroo woroo... 📣\nAnnyeong haseyo, chinggu yaaa 👋\n\nPengumuman untuk awak teater bahtera besok akan diadakan latihan mingguan pada :\n\nHari : \nWaktu : 09.00 WIB\nTempat : Sekolah\n\n👗 Dress : baju latihan, celana training, dan kerudung hitam ✨\n\nDitunggu kehadirannya yaa kakak alumni 🤩\n\nSekian pemberitahuan hari ini\n\n🎭 Belajar untuk hidup, hidup untuk belajar, maka pelajarilah hidup\n\nSalam teater, bahtera!!⛵\n\nWassalamu'alaikum Wr.Wb\nوالسلام عليكم ورحمة الله وبركاته`;
                     break;
                 case "kustom":
                     // Biarkan textarea kosong untuk template kustom

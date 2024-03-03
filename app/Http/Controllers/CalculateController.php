@@ -6,6 +6,7 @@ use App\Models\Assessment;
 use App\Models\Member;
 use App\Models\Criteria;
 use App\Models\Result;
+use App\Models\Period;
 use Illuminate\Http\Request;
 
 class CalculateController extends Controller
@@ -15,18 +16,21 @@ class CalculateController extends Controller
         // Mengambil data dari tabel Assessment dengan beberapa kolom tertentu
         $assessments = Assessment::with(['member', 'criteria', 'subCriteria'])->get();
 
-        // Mengambil data dari table Member
+        // Mengambil data dari tabel Member
         $members = Member::all();
 
-        // Mengambil data dari table Member
+        // Mengambil data dari tabel Member
         $results = Result::all();
+
+        // Memanggil data dari tabel periode
+        $periods = Period::all();
 
         // Mengambil data dari table Criteria
         $criterias = Criteria::all();
         $totalBobotNilai = $criterias->sum('criteria_value');
         $totalBobotNormalisasi = $criterias->sum('normalisasi');
 
-        return view('pages.admin.perhitungan.calculation', compact('assessments', 'members', 'criterias', 'results', 'totalBobotNilai', 'totalBobotNormalisasi'));
+        return view('pages.admin.perhitungan.calculation', compact('assessments', 'members', 'criterias', 'results', 'periods', 'totalBobotNilai', 'totalBobotNormalisasi'));
     }
 
     public function calculateUtility()
@@ -68,13 +72,16 @@ class CalculateController extends Controller
         return redirect()->back();
     }
 
-    public function calculateResult()
+    public function calculateResult(Request $request)
     {
         // Mengambil data dari tabel Members
         $members = Member::all();
 
         // Mengambil data dari tabel Criterias
         $criterias = Criteria::all();
+
+        // Mengambil inputan user untuk periode
+        $period = $request->input('periode');
 
         foreach ($members as $member) {
             $nilaiAkhir = 0;
@@ -97,7 +104,10 @@ class CalculateController extends Controller
             }
 
             // Mencari atau membuat objek Result berdasarkan members_id
-            $result = Result::firstOrNew(['members_id' => $member->id]);
+            $result = Result::firstOrNew([
+                'members_id' => $member->id,
+                'period' => $period,
+            ]);
 
             // Menyimpan nilaiAkhir ke dalam objek Result
             $result->members_name = $member->member_name;

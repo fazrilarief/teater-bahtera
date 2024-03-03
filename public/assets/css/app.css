@@ -13381,3 +13381,21 @@ span.flatpickr-weekday {
     width: 260px;
 }
 /*# sourceMappingURL=app.css.map*/
+
+.card-primary-border-top {
+    border-top: 3px solid var(--bs-primary);
+}
+.card-warning-border-top {
+    border-top: 3px solid var(--bs-warning);
+}
+.card-danger-border-top {
+    border-top: 3px solid var(--bs-danger);
+}
+.card-success-border-top {
+    border-top: 3px solid var(--bs-success);
+}
+
+.filter-data .btn-filter {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

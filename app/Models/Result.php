@@ -13,6 +13,7 @@ class Result extends Model
         'members_id',
         'members_name',
         'result',
+        'period',
     ];
 
     public function member()

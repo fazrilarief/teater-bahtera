@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Result;
+use App\Models\Period;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -10,9 +11,16 @@ class RankController extends Controller
 {
     public function index()
     {
-        $results = Result::with(['member'])->orderBy('result', 'DESC')->get();
+        // Memanggil semua data result
+        // $results = Result::with(['member'])->orderBy('result', 'DESC')->get();
 
-        return view('pages.admin.perankingan.rank', compact('results'));
+        // Filter data berdasarkan periodenya
+        $results = Result::where('period', request('periode'))->get();
+
+        // Memanggil semua data period
+        $periods = Period::all();
+
+        return view('pages.admin.perankingan.rank', compact('results', 'periods'));
     }
 
     public function downloadPdf()
@@ -30,6 +38,6 @@ class RankController extends Controller
             ->setPaper('a4');
 
         $date = date('my');
-        return $pdf->download('T-TRA' . $date . '-' . 'Rekapitulasi Nilai Anggota.pdf' );
+        return $pdf->download('T-TRA' . $date . '-' . 'Rekapitulasi Nilai Anggota.pdf');
     }
 }
