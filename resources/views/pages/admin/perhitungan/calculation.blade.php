@@ -205,10 +205,10 @@
             <div class="card shadow-lg card-primary-border-top">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-lg-9 col-sm-12">
                             <h4>Hasil Akhir</h4>
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-3 col-sm-12">
                             <form action="{{ route('perhitungan.calculate-result') }}" method="post">
                                 @csrf
                                 <div class="input-group gap-2">
@@ -219,7 +219,7 @@
                                         @endforeach
                                     </select>
                                     <button type="submit" id="calculateButton" class="btn btn-success">
-                                        Hitung Nilai Akhir <i class="align-middle" data-feather='chevrons-right'></i>
+                                        Hitung Nilai <i class="align-middle" data-feather='chevrons-right'></i>
                                     </button>
                                 </div>
                             </form>
