@@ -147,7 +147,8 @@
         .header-content img,
         .header-content h1 {
             margin-left: 10px;
-            /* Untuk memberikan sedikit jarak antara gambar dan teks */
+            margin-bottom: 0px
+                /* Untuk memberikan sedikit jarak antara gambar dan teks */
         }
     </style>
 </head>
@@ -157,8 +158,9 @@
         <div class="row">
             <div class="receipt-main">
                 <div class="header-content">
-                    {{-- <img src="https://cdn.pixabay.com/photo/2024/01/04/21/54/volcano-8488486_1280.jpg" alt=""> --}}
+                    {{-- <img src="{{ asset('assets/img/logos/logo-teater-circle.png') }}" alt=""> --}}
                     <h1 class="text-center">TEATER BAHTERA</h1>
+                    <h3 class="text-center">SMAN 8 Kabupaten Tangerang</h3>
                 </div>
                 <p class="text-center">Jl. Siliwangi No.30, Cisoka, Kec. Cisoka, Kabupaten Tangerang, Banten 15730
                 </p>
@@ -169,12 +171,9 @@
                             <div class="receipt-right">
                                 <h5>Rekap Nilai</h5>
                                 <p><b>Periode :</b> {{ $periode }}</p>
-                                {{-- <p>
-                                    <b>Email :</b>
-                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                        data-cfemail="5b382e282f34363e291b3c363a323775383436">[email&#160;protected]</a>
-                                </p> --}}
                                 <p><b>Tanggal : </b> {{ $date }}</p>
+                                <p><b>Dibuat Oleh : </b> System</p>
+                                <p><b> Dikirim Oleh : </b> {{ auth()->user()->username }}</p>
                             </div>
                         </div>
                         {{-- <div class="col-xs-4 col-sm-4 col-md-4">
@@ -217,7 +216,7 @@
                                 <br>
                                 <br>
                                 <br>
-                                <p>Fazril Arief Nugraha</p>
+                                <p>Iip Maulana Syaiful Bahri</p>
                             </div>
                         </div>
                     </div>

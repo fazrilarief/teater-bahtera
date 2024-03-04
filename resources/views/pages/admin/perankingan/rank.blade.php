@@ -38,9 +38,9 @@
                                             class="d-flex text-nowrap">
                                             @csrf
                                             <select name="periode" id="periode" class="form-select rounded-none">
-                                                <option disabled selected value="none">Pilih Periode</option>
+                                                <option selected value="none">Pilih Periode</option>
                                                 @foreach ($periods as $period)
-                                                    <option value="{{ $period->periode }}">{{ $period->periode }}</option>
+                                                    <option value="{{ $period->periode }}"> {{ $period->periode }}</option>
                                                 @endforeach
                                             </select>
                                             <button type="submit" class="btn-filter btn btn-success"><i class="align-middle"
