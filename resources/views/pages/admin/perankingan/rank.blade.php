@@ -108,9 +108,9 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $result->member->member_code }}</td>
                                     <td>{{ $result->members_name }}</td>
-                                    <td class="fw-bold">{{ $result->result }}</td>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $result->period }}</td>
+                                    <td><span class="badge bg-success">{{ $result->result }}</span></td>
+                                    <td><span class="badge bg-primary">{{ $loop->iteration }}</span></td>
+                                    <td><span class="badge bg-warning">{{ $result->period }}</span></td>
                                 </tr>
                             @endforeach
                         </tbody>
