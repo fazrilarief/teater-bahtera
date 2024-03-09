@@ -6,6 +6,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\SubCriteriaController;
 use App\Http\Controllers\PeriodController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\CalculateController;
 // use Illuminate\Support\Facades\Auth;
@@ -47,9 +48,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('auth.login.logo
 Route::middleware(['auth'])->group(function () {
 
     // Dashboard
-    Route::get('dashboard', function () {
-        return view('pages.admin.index');
-    })->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Perankingan
     Route::namespace('App\Http\Controllers')->group(function () {

@@ -1,6 +1,6 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand d-flex justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex justify-content-center" href="{{ route('dashboard') }}">
             <img src="{{ asset('assets/img/logos/logo_teater_bahtera.png') }}" alt="Teater Bahtera"
                 style="width: 80px; height: 65px">
         </a>

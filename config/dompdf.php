@@ -21,6 +21,9 @@ return array(
     'convert_entities' => true,
 
     'options' => array(
+
+        'isRemoteEnabled' => true,
+
         /**
          * The location of the DOMPDF font directory
          *
@@ -96,9 +99,9 @@ return array(
             "https://" => ["rules" => []]
         ],
 
-         /**
-          * @var string
-          */
+        /**
+         * @var string
+         */
         'log_output_file' => null,
 
         /**
@@ -171,13 +174,13 @@ return array(
          */
         "default_paper_size" => "a4",
 
-         /**
-          * The default paper orientation.
-          *
-          * The orientation of the page (portrait or landscape).
-          *
-          * @var string
-          */
+        /**
+         * The default paper orientation.
+         *
+         * The orientation of the page (portrait or landscape).
+         *
+         * @var string
+         */
         'default_paper_orientation' => "portrait",
 
         /**
@@ -279,6 +282,5 @@ return array(
          */
         "enable_html5_parser" => true,
     ),
-
 
 );
