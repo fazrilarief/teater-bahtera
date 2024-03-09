@@ -168,7 +168,7 @@
                                 </td>
                                 <td class="text-center">
                                     <h1 class="text-center">TEATER BAHTERA</h1>
-                                    <h3 class="text-center">SMAN 8 Kabupaten Tangerang</h3>
+                                    <h3 class="text-center">SMAN 8 Kab. Tangerang</h3>
                                     <br>
                                     <p class="text-center">Jl. Siliwangi No.30, Cisoka, Kec. Cisoka, Kabupaten
                                         Tangerang, Banten 15730
