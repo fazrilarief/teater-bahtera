@@ -66,12 +66,13 @@
             /* Sesuaikan padding sesuai kebutuhan */
         }
 
-        .receipt-main thead {
-            background: #414143 none repeat scroll 0 0;
-        }
+        /* .receipt-main thead {
+            background-color: #414143;
+        } */
 
         .receipt-main thead th {
-            color: #fff;
+            background-color: #333333;
+            color: #ffffff;
         }
 
         .receipt-right h5 {
@@ -158,12 +159,29 @@
         <div class="row">
             <div class="receipt-main">
                 <div class="header-content">
-                    {{-- <img src="{{ asset('assets/img/logos/logo-teater-circle.png') }}" alt=""> --}}
-                    <h1 class="text-center">TEATER BAHTERA</h1>
-                    <h3 class="text-center">SMAN 8 Kabupaten Tangerang</h3>
+                    <table class="align-middle">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="{{ public_path('assets/img/logos/logo_sman8.png') }}"
+                                        alt="Logo SMAN 8 Kab. Tangerang" style="width: 7rem; heigth: auto;">
+                                </td>
+                                <td class="text-center">
+                                    <h1 class="text-center">TEATER BAHTERA</h1>
+                                    <h3 class="text-center">SMAN 8 Kabupaten Tangerang</h3>
+                                    <br>
+                                    <p class="text-center">Jl. Siliwangi No.30, Cisoka, Kec. Cisoka, Kabupaten
+                                        Tangerang, Banten 15730
+                                    </p>
+                                </td>
+                                <td>
+                                    <img src="{{ public_path('assets/img/logos/logo-teater-circle.png') }}"
+                                        alt="Logo SMAN 8 Kab. Tangerang" style="width: 8rem; heigth: auto;">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <p class="text-center">Jl. Siliwangi No.30, Cisoka, Kec. Cisoka, Kabupaten Tangerang, Banten 15730
-                </p>
                 <hr>
                 <div class="row">
                     <div class="receipt-header receipt-header-mid">

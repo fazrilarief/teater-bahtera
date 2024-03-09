@@ -32,22 +32,27 @@ class RankController extends Controller
     {
         // Ambil nilai periode dari session
         $periode = session()->get('periode');
-
         // Mengirim data ke view "download PDF"
         $results = Result::where('period', $periode)->get();
+        // Menampung tanggal
+        $date = date('d/m/y');
 
-        $data = [
-            'periode' => $periode,
-            'date' => date('d/m/y'),
-            'results' => $results,
-        ];
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML(view('pages.admin.pdf.resultPdf', compact('results', 'periode', 'date')));
+        $mpdf->Output('T-TRA' . '-' . '[' . $periode . ']' . '-' . 'Rekapitulasi Nilai Anggota.pdf', 'D');
 
-        $pdf = Pdf::loadView('pages.admin.pdf.resultPdf', $data)
-            ->setOptions(['defaultFont' => 'sans-serif'])
-            ->setPaper('a4');
-            // ->set_option('isRemoteEnabled', TRUE);
+        // $data = [
+        //     'periode' => $periode,
+        //     'date' => date('d/m/y'),
+        //     'results' => $results,
+        // ];
 
-        $date = date('my');
-        return $pdf->download('T-TRA' . $date . '-' . 'Rekapitulasi Nilai Anggota.pdf');
+        // $pdf = Pdf::loadView('pages.admin.pdf.resultPdf', $data)
+        //     ->setOptions(['defaultFont' => 'sans-serif'])
+        //     ->setPaper('a4');
+        //     // ->set_option('isRemoteEnabled', TRUE);
+
+        // $date = date('my');
+        // return $pdf->download('T-TRA' . $date . '-' . 'Rekapitulasi Nilai Anggota.pdf');
     }
 }
