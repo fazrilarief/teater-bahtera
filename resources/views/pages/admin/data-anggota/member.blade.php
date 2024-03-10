@@ -38,11 +38,11 @@
                             </a>
                         </div>
                         <div class="col-6 d-flex justify-content-end gap-2">
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#importData">
+                                <i class="align-middle" data-feather="arrow-up-circle"></i> Import
+                            </button>
                             <a href="{{ route('data-anggota.export') }}" class="btn btn-success">
                                 <i class="align-middle" data-feather="arrow-down-circle"></i> Export
-                            </a>
-                            <a href="#" class="btn btn-info">
-                                <i class="align-middle" data-feather="arrow-up-circle"></i> Import
                             </a>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="staticBackdropLabel{{ $member->id }}">
-                                                    <strong>Lihat Data :</strong> {{ $member->name }}
+                                                    <strong>Lihat Data :</strong> {{ $member->member_name }}
                                                 </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
@@ -389,4 +389,32 @@
         </div>
         {{-- Main Content Ends --}}
     </main>
+
+    <!-- Modal Import Data-->
+    <div class="modal fade" id="importData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Import Data Anggota</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('data-anggota.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group">
+                            <label for="file">Import Data (.xlsx)</label>
+                            <input type="file" name="file" id="file" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-info">
+                            <i class="align-middle" data-feather="arrow-up-circle"></i> Import
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

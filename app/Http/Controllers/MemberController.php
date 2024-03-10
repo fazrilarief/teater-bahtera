@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\MemberRequest;
 use App\Models\Member;
 use App\Exports\MembersExport;
+use App\Imports\MembersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Database\QueryException;
 
 class MemberController extends Controller
 {
@@ -101,18 +104,27 @@ class MemberController extends Controller
      */
     public function destroy(string $id)
     {
-        // Mencari ID
-        $delete = Member::findOrFail($id);
+        try {
+            // Mencari ID
+            $delete = Member::findOrFail($id);
 
-        // Menghapus data
-        $delete->delete();
+            // Menghapus data
+            $delete->delete();
 
-        // Validasi method $delete
-        if ($delete) {
-            Alert::Warning('Warning', 'Berhasil Menghapus Data');
+            // Jika berhasil dihapus, redirect atau berikan pesan sukses
+            Alert::success('Success', 'Berhasil Menghapus Data');
             return redirect()->route('data-anggota.member');
-        } else {
-            return abort(500); // Pesan kesalahan spesifik
+        } catch (QueryException $e) {
+            // Tangkap exception ketika ada konstrain foreign key
+            if ($e->errorInfo[1] == 1451) {
+                // Custom pesan error untuk konstrain foreign key
+                Alert::error('Error', 'Data sudah diberi penilaian, hapus penilaian untuk menghapus data ini.');
+                return redirect()->route('data-anggota.member');
+            } else {
+                // Handle exception lain jika diperlukan
+                Alert::error('Error', 'Terjadi kesalahan: ' . $e->getMessage());
+                return redirect()->back();
+            }
         }
     }
 
@@ -122,5 +134,15 @@ class MemberController extends Controller
     public function export()
     {
         return Excel::download(new MembersExport, 'Data Aggota Teater Bahtera - ' . now()->format('Y-m-d H:i:s') . '.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataAnggota', $namaFile);
+
+        Excel::import(new MembersImport, public_path('DataAnggota/' . $namaFile));
+        return redirect()->back();
     }
 }
