@@ -70,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
 
         // Export & Import Excel
         Route::get('export/excel/', [MemberController::class, 'export'])->name('data-anggota.export');
+        Route::post('import/excel/', [MemberController::class, 'import'])->name('data-anggota.import');
 
         // Tools
         Route::namespace('App\Http\Controllers\Telegram')->group(function () {
