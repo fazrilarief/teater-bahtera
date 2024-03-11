@@ -7,8 +7,7 @@
                 <div class="d-table-cell align-middle">
 
                     <div class="text-center mt-4">
-                        <img src="{{ asset('assets/img/logos/logo-teater-circle.png') }}" alt="Logo Teater"
-                            style="height: 100px">
+                        <img src="{{ asset('assets/img/logos/logo_teater.png') }}" alt="Logo Teater" style="height: 100px">
                         <p class="lead">
                             Sign in to your account to continue
                         </p>
