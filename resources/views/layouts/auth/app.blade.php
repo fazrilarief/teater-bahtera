@@ -5,7 +5,7 @@
     @include('includes.auth.head')
 </head>
 
-<body>
+<body class="bg-dark text-white">
     @include('sweetalert::alert')
     <main class="d-flex w-100">
         @yield('content')

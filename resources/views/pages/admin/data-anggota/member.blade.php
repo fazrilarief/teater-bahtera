@@ -38,8 +38,9 @@
                             </a>
                         </div>
                         <div class="col-6 d-flex justify-content-end gap-2">
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#clearData">
-                                <i class="align-middle" data-feather="arrow-up-trash"></i> Clear
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#clearData">
+                                <i class="align-middle" data-feather="trash"></i> Clear
                             </button>
                             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#importData">
                                 <i class="align-middle" data-feather="arrow-up-circle"></i> Import
