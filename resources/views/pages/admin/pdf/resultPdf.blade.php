@@ -213,13 +213,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($results->sortByDesc('result') as $result)
+                            @foreach ($ranks->sortByDesc('result') as $rank)
                                 <tr>
-                                    <td> {{ $result->members_name }} </td>
-                                    <td class="text-center"> {{ $result->member->member_code }} </td>
-                                    <td class="text-center"> {{ $result->member->grade . ' ' . $result->member->major }}
-                                    </td>
-                                    <td class="text-center"> {{ $result->result }} </td>
+                                    <td> {{ $rank->member_name }} </td>
+                                    <td class="text-center"> {{ $rank->member_code }} </td>
+                                    <td class="text-center"> {{ $rank->member_class }} </td>
+                                    <td class="text-center"> {{ $rank->result }} </td>
                                     <td class="text-center"> {{ $loop->iteration }} </td>
                                 </tr>
                             @endforeach
@@ -229,13 +228,11 @@
                 <div class="row">
                     <div class="receipt-header receipt-header-mid receipt-footer">
                         <div class="col-xs-4 col-sm-4 col-md-4">
-                            <div class="receipt-left">
-                                <h1>Coach</h1>
-                                <br>
-                                <br>
-                                <br>
-                                <p>Iip Maulana Syaiful Bahri</p>
-                            </div>
+                            <h1>Coach</h1>
+                            <br>
+                            <br>
+                            <br>
+                            <p>Iip Maulana Syaiful Bahri</p>
                         </div>
                     </div>
                 </div>

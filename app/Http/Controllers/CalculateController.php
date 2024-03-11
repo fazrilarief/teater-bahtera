@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assessment;
 use App\Models\Member;
 use App\Models\Criteria;
+use App\Models\Rank;
 use App\Models\Result;
 use App\Models\Period;
 use Illuminate\Http\Request;
@@ -115,6 +116,21 @@ class CalculateController extends Controller
 
             // Menyimpan objek Result ke dalam tabel Results
             $result->save();
+
+            // Menyimpan kelas member
+            $memberClass = $member->grade . " " . $member->major . " " . $member->class_code;
+
+            // Menyimpan hasil result ke table "ranks"
+            if ($result->save()) {
+                $rank = new Rank();
+                $rank->member_id = $result->members_id;
+                $rank->member_name = $result->members_name;
+                $rank->member_code = $member->member_code;
+                $rank->member_class = $memberClass;
+                $rank->result = $result->result;
+                $rank->period = $result->period;
+                $rank->save();
+            }
         }
 
         return redirect()->back()->with('success', 'Nilai akhir berhasil dihitung.');
