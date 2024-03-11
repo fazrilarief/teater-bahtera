@@ -38,6 +38,9 @@
                             </a>
                         </div>
                         <div class="col-6 d-flex justify-content-end gap-2">
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#clearData">
+                                <i class="align-middle" data-feather="arrow-up-trash"></i> Clear
+                            </button>
                             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#importData">
                                 <i class="align-middle" data-feather="arrow-up-circle"></i> Import
                             </button>
@@ -412,6 +415,36 @@
                         <button type="submit" class="btn btn-info">
                             <i class="align-middle" data-feather="arrow-up-circle"></i> Import
                         </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Clear Data-->
+    <div class="modal fade" id="clearData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Bersihkan Data</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('clear.assessment.result') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        <p>Anda yakin ingin membersihkan data?</p>
+                        <strong>
+                            <p>Data berikut akan <u>TERHAPUS :</u></p>
+                            <ul>
+                                <li>Data Penilaian Alternatif</li>
+                                <li>Data Hasil Akhir Sementara</li>
+                            </ul>
+                        </strong>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger"> Yakin! </button>
                     </div>
                 </form>
             </div>

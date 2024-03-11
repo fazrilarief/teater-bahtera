@@ -95,22 +95,22 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Alternatif</th>
                                 <th>Nama</th>
+                                <th>Kode Alternatif</th>
                                 <th>Nilai Akhir</th>
                                 <th>Ranking</th>
                                 <th>Periode</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($results as $result)
+                            @foreach ($ranks as $rank)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $result->member->member_code }}</td>
-                                    <td>{{ $result->members_name }}</td>
-                                    <td><span class="badge bg-success">{{ $result->result }}</span></td>
+                                    <td>{{ $rank->member_name }}</td>
+                                    <td>{{ $rank->member_code }}</td>
+                                    <td><span class="badge bg-success">{{ $rank->result }}</span></td>
                                     <td><span class="badge bg-primary">{{ $loop->iteration }}</span></td>
-                                    <td><span class="badge bg-warning">{{ $result->period }}</span></td>
+                                    <td><span class="badge bg-warning">{{ $rank->period }}</span></td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -7,6 +7,7 @@ use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\SubCriteriaController;
 use App\Http\Controllers\PeriodController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ClearAssessmentAndResult;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\CalculateController;
 // use Illuminate\Support\Facades\Auth;
@@ -85,6 +86,8 @@ Route::middleware(['auth'])->group(function () {
             Route::put('member/update/{id}', 'MemberController@update')->name('user.member.update');
             Route::delete('member/delete/{id}', 'MemberController@destroy')->name('user.member.destroy');
         });
+
+        Route::delete('clear/assessment and result', [ClearAssessmentAndResult::class, 'clearAssessmentResult'])->name('clear.assessment.result');
     });
 
 
