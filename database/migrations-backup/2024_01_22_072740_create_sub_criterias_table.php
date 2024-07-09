@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('periods', function (Blueprint $table) {
-            $table->id('id_period');
-            $table->string('periode', 50);
+        Schema::create('sub_criterias', function (Blueprint $table) {
+            $table->id();
+            $table->string('sub_criteria_name');
+            $table->string('sub_criteria_value');
+            $table->unsignedBigInteger('criterias_id');
+            $table->foreign('criterias_id')->references('id')->on('criterias');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('sub_criterias');
     }
 };

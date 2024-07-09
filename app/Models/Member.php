@@ -9,6 +9,8 @@ class Member extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_member';
+    
     protected $fillable = [
         'member_name',  // Tambahkan atribut members_name
         'member_code',

@@ -9,6 +9,8 @@ class SubCriteria extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_sub_criteria';
+
     protected $fillable = [
         'sub_criteria_name',
         'sub_criteria_value',

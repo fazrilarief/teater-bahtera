@@ -9,6 +9,8 @@ class Assessment extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_assessment';
+
     protected $fillable = [
         'members_id',
         'criterias_id',
@@ -23,16 +25,16 @@ class Assessment extends Model
 
     public function member()
     {
-        return $this->belongsTo(Member::class, 'members_id');
+        return $this->belongsTo(Member::class, 'members_id', 'id_member');
     }
 
     public function criteria()
     {
-        return $this->belongsTo(Criteria::class, 'criterias_id');
+        return $this->belongsTo(Criteria::class, 'criterias_id', 'id_criteria');
     }
 
     public function subCriteria()
     {
-        return $this->belongsTo(SubCriteria::class, 'sub_criterias_id');
+        return $this->belongsTo(SubCriteria::class, 'sub_criterias_id', 'id_sub_criteria');
     }
 }

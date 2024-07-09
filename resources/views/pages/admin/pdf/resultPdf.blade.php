@@ -175,8 +175,8 @@
                                     </p>
                                 </td>
                                 <td>
-                                    <img src="{{ public_path('assets/img/logos/logo-teater-circle.png') }}"
-                                        alt="Logo SMAN 8 Kab. Tangerang" style="width: 8rem; heigth: auto;">
+                                    <img src="{{ public_path('assets/img/logos/logo_teater.png') }}"
+                                        alt="Logo Teater Bahtera" style="width: 8rem; heigth: auto;">
                                 </td>
                             </tr>
                         </tbody>

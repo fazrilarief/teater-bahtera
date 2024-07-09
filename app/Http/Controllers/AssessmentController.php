@@ -48,7 +48,7 @@ class AssessmentController extends Controller
     {
         // Validasi request
         $request->validate([
-            'member_id' => 'required|exists:members,id',
+            'member_id' => 'required|exists:members,id_member',
             'member_name' => 'required|exists:members,member_name',
             'member_code' => 'required|exists:members,member_code',
             'criteria' => 'required|array',
@@ -65,20 +65,18 @@ class AssessmentController extends Controller
 
         // Looping untuk menyimpan nilai berdasarkan kriteria dan sub-kriteria yang dipilih
         foreach ($request->input('criteria') as $criteriaId => $subCriteriaId) {
-            // Validasi kriteria dan sub-kriteria
-            // Pastikan sesuai dengan aturan validasi yang dibutuhkan
-
             // Dapatkan nama kriteria dan sub-kriteria
-            $criteriaName = Criteria::find($criteriaId)->criteria_name;
             $criteriaCategory = Criteria::find($criteriaId)->category;
-            $subCriteriaName = SubCriteria::find($subCriteriaId)->sub_criteria_name;
-            $subCriteriaValue = SubCriteria::find($subCriteriaId)->sub_criteria_value;
+            $criteriaName = Criteria::find($criteriaId)->criteria_name;
+
+            // Menyesuaikan pemanggilan untuk sub criteria
+            $subCriteria = SubCriteria::where('id_sub_criteria', $subCriteriaId)->first();
+            $subCriteriaName = $subCriteria->sub_criteria_name;
+            $subCriteriaValue = $subCriteria->sub_criteria_value;
 
             // Simpan nilai ke database
             $assessment = new Assessment([
                 'members_id' => $request->input('member_id'),
-                'members_name' => $request->input('member_name'),
-                'members_code' => $request->input('member_code'),
                 'criterias_id' => $criteriaId,
                 'sub_criterias_id' => $subCriteriaId,
                 'criteria_name' => $criteriaName,

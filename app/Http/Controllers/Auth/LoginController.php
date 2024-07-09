@@ -22,10 +22,10 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->route('dashboard');
+        } else {
+            return redirect()->back()->withInput()
+                ->withErrors(['credentials' => 'The email or password is incorrect']);
         }
-
-        return redirect()->back()->withInput()
-            ->withErrors(['credentials' => 'The email or password is incorrect']);
     }
 
     public function logout()

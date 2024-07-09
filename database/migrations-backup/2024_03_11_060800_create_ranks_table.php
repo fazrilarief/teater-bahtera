@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('periods', function (Blueprint $table) {
-            $table->id('id_period');
-            $table->string('periode', 50);
-            $table->softDeletes();
+        Schema::create('ranks', function (Blueprint $table) {
+            $table->id();
+            $table->integer('member_id');
+            $table->string('member_name');
+            $table->string('member_code');
+            $table->string('member_class');
+            $table->decimal('result', 10, 3)->nullable();
+            $table->string('period');
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('ranks');
     }
 };

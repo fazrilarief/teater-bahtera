@@ -110,7 +110,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col d-flex justify-content-end gap-2">
-                                                        <form action="{{ route('periode.destroy', $period->id) }}"
+                                                        <form action="{{ route('periode.destroy', $period->id_period) }}"
                                                             onsubmit="return confirm('Data akan dihapus?')" method="POST">
                                                             @csrf
                                                             @method('DELETE')

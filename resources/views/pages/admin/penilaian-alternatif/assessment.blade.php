@@ -66,7 +66,7 @@
                                     @foreach ($criterias as $criteria)
                                         <td class="fw-bold">
                                             @foreach ($assessments as $assessment)
-                                                @if ($assessment->members_id === $member->id && $assessment->criterias_id === $criteria->id)
+                                                @if ($assessment->members_id === $member->id_member && $assessment->criterias_id === $criteria->id_criteria)
                                                     {{ $assessment->sub_criteria_name }}
                                                 @endif
                                             @endforeach
@@ -77,11 +77,11 @@
                                         <div class="row">
                                             <div class="col d-flex justify-content-end gap-2">
                                                 <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#nilaiAlternatif{{ $member->id }}">
+                                                    data-bs-target="#nilaiAlternatif{{ $member->id_member }}">
                                                     <i class="align-middle" data-feather="edit"></i> Nilai
                                                 </button>
                                                 <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#editNilaiAlternatif{{ $member->id }}">
+                                                    data-bs-target="#editNilaiAlternatif{{ $member->id_member }}">
                                                     <i class="align-middle" data-feather="eye"></i> Edit
                                                 </button>
                                             </div>
@@ -89,15 +89,15 @@
                                 </tr>
 
                                 {{-- Modal Nilai Alterntaif --}}
-                                <div class="modal fade" id="nilaiAlternatif{{ $member->id }}" data-bs-backdrop="static"
+                                <div class="modal fade" id="nilaiAlternatif{{ $member->id_member }}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1"
-                                    aria-labelledby="nilaiAlternatifLabel{{ $member->id }}" aria-hidden="true">
+                                    aria-labelledby="nilaiAlternatifLabel{{ $member->id_member }}" aria-hidden="true">
                                     <div class="modal-dialog bg-primary">
                                         <div class="modal-content">
                                             <form action="{{ route('assessment.store') }}" method="POST">
                                                 @csrf
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="nilaiAlternatifLabel{{ $member->id }}">
+                                                    <h5 class="modal-title" id="nilaiAlternatifLabel{{ $member->id_member }}">
                                                         Nilai Anggota : <strong>{{ $member->member_name }}</strong>
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -107,26 +107,28 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="hidden" name="member_id"
-                                                                value="{{ $member->id }}">
+                                                                value="{{ $member->id_member }}">
                                                             <input type="hidden" name="member_name"
                                                                 value="{{ $member->member_name }}">
                                                             <input type="hidden" name="member_code"
                                                                 value="{{ $member->member_code }}">
                                                             @foreach ($criterias as $criteria)
                                                                 <div class="mb-3">
-                                                                    <label for="criteria[{{ $criteria->id }}]"
+                                                                    <label for="criteria[{{ $criteria->id_criteria }}]"
                                                                         class="form-label">
                                                                         {{ $criteria->criteria_name }}
                                                                     </label>
-                                                                    <select name="criteria[{{ $criteria->id }}]"
-                                                                        id="criteria[{{ $criteria->id }}]"
+                                                                    <select name="criteria[{{ $criteria->id_criteria }}]"
+                                                                        id="criteria[{{ $criteria->id_criteria }}]"
                                                                         class="form-select">
                                                                         <option selected disabled>.....</option>
                                                                         @php
-                                                                            $res = $subCriterias->where('criterias_id', $criteria->id)->all();
+                                                                            $res = $subCriterias
+                                                                                ->where('criterias_id', $criteria->id_criteria)
+                                                                                ->all();
                                                                         @endphp
                                                                         @foreach ($res as $subCriteria)
-                                                                            <option value="{{ $subCriteria->id }}">
+                                                                            <option value="{{ $subCriteria->id_sub_criteria }}">
                                                                                 {{ $subCriteria->sub_criteria_name . ' | ' . ' Nilai : ' . $subCriteria->sub_criteria_value }}
                                                                             </option>
                                                                         @endforeach
@@ -146,18 +148,18 @@
                                 {{-- Modal Nilai Alterntaif Ends --}}
 
                                 {{-- Modal Edit Nilai Alterntaif --}}
-                                {{-- <div class="modal fade" id="editNilaiAlternatif{{ $member->id }}"
+                                <div class="modal fade" id="editNilaiAlternatif{{ $member->id_member }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                    aria-labelledby="editNilaiAlternatifLabel{{ $member->id }}" aria-hidden="true">
+                                    aria-labelledby="editNilaiAlternatifLabel{{ $member->id_member }}" aria-hidden="true">
                                     <div class="modal-dialog bg-primary">
                                         <div class="modal-content">
-                                            <form action="{{ route('assessment.update', $assessment->id) }}"
+                                            <form action="{{ route('assessment.update', ['assessment' => $member->id_member]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="modal-header">
                                                     <h5 class="modal-title"
-                                                        id="editNilaiAlternatifLabel{{ $member->id }}">
+                                                        id="editNilaiAlternatifLabel{{ $member->id_member }}">
                                                         Edit Nilai : <strong>{{ $member->member_name }}</strong>
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -167,20 +169,21 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <input type="hidden" name="member_id"
-                                                                value="{{ $member->id }}">
+                                                                value="{{ $member->id_member }}">
                                                             @foreach ($criterias as $criteria)
                                                                 <div class="mb-3">
-                                                                    <label for="criteria[{{ $criteria->id }}]"
+                                                                    <label for="criteria[{{ $criteria->id_criteria }}]"
                                                                         class="form-label">
                                                                         {{ $criteria->criteria_name }}
                                                                     </label>
-                                                                    <select name="criteria[{{ $criteria->id }}]"
-                                                                        id="criteria[{{ $criteria->id }}]"
+                                                                    <select name="criteria[{{ $criteria->id_criteria }}]"
+                                                                        id="criteria[{{ $criteria->id_criteria }}]"
                                                                         class="form-select">
                                                                         <option value="" disabled>.....</option>
-                                                                        @foreach ($subCriterias->where('criterias_id', $criteria->id) as $subCriteria)
-                                                                            <option value="{{ $subCriteria->id }}"
-                                                                                {{ old('criteria.' . $criteria->id, $assessment->sub_criterias_id ?? '') == $subCriteria->id ? 'selected' : '' }}>
+                                                                        @foreach ($subCriterias->where('criterias_id', $criteria->id_criteria) as $subCriteria)
+                                                                            <option value="{{ $subCriteria->id_sub_criteria }}"
+                                                                                @foreach ($groupedAssessments[$member->id_member] ?? [] as $assessment)
+                                                                                    {{ old('criteria.' . $criteria->id_criteria, $assessment->sub_criterias_id ?? '') == $subCriteria->id_sub_criteria ? 'selected' : '' }} @endforeach>
                                                                                 {{ $subCriteria->sub_criteria_name }}
                                                                             </option>
                                                                         @endforeach
@@ -196,7 +199,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                                 {{-- Modal Edit Nilai Alterntaif Ends --}}
                             @endforeach
                         </tbody>

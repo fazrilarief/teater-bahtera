@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('periods', function (Blueprint $table) {
-            $table->id('id_period');
-            $table->string('periode', 50);
+            $table->id();
+            $table->string('periode');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" data-bs-toggle="modal"
-                                    data-bs-target="#tambahData{{ $criteria->id }}" class="btn btn-primary">
+                                    data-bs-target="#tambahData{{ $criteria->id_criteria }}" class="btn btn-primary">
                                     <i class="align-middle" data-feather="plus"></i> Tambah Data
                                 </button>
                             </div>
@@ -59,7 +59,7 @@
                                         $no = 1;
                                     @endphp
                                     @foreach ($subCriterias as $subCriteria)
-                                        @if ($subCriteria->criterias_id === $criteria->id)
+                                        @if ($subCriteria->criterias_id === $criteria->id_criteria)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $subCriteria->sub_criteria_name }}</td>
@@ -68,12 +68,12 @@
                                                     <div class="row">
                                                         <div class="col d-flex justify-content-end">
                                                             <button type="button" data-bs-toggle="modal"
-                                                                data-bs-target="#editData{{ $subCriteria->id }}"
+                                                                data-bs-target="#editData{{ $subCriteria->id_sub_criteria }}"
                                                                 class="btn btn-warning btn-sm">
                                                                 <i class="align-middle" data-feather="edit"></i>
                                                             </button>
                                                             <form
-                                                                action="{{ route('data-sub-criteria.destroy', $subCriteria->id) }}"
+                                                                action="{{ route('data-sub-criteria.destroy', $subCriteria->id_sub_criteria) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -95,15 +95,15 @@
                 </div>
 
                 {{-- Modal Tambah Sub Kriteria --}}
-                <div class="modal fade" id="tambahData{{ $criteria->id }}" data-bs-backdrop="static"
+                <div class="modal fade" id="tambahData{{ $criteria->id_criteria }}" data-bs-backdrop="static"
                     data-bs-keyboard="false" tabindex="-1"
-                    aria-labelledby="staticBackdropSubKriteriaLabel{{ $criteria->id }}" aria-hidden="true">
+                    aria-labelledby="staticBackdropSubKriteriaLabel{{ $criteria->id_criteria }}" aria-hidden="true">
                     <div class="modal-dialog bg-primary">
                         <div class="modal-content">
                             <form action="{{ route('data-sub-criteria.store') }}" method="POST">
                                 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel{{ $criteria->id }}">
+                                    <h5 class="modal-title" id="staticBackdropLabel{{ $criteria->id_criteria }}">
                                         Sub Kriteria untuk : <strong>{{ $criteria->criteria_name }}</strong>
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -115,7 +115,7 @@
                                             <div class="mb-3">
                                                 <label for="criterias_id" class="form-label">ID Kriteria</label>
                                                 <input type="number" name="criterias_id" class="form-control"
-                                                    value="{{ $criteria->id }}" readonly>
+                                                    value="{{ $criteria->id_criteria }}" readonly>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="sub_criteria_name" class="form-label">Nama Sub Kriteria</label>
@@ -140,18 +140,18 @@
 
                 {{-- Modal Edit Sub Kriteria --}}
                 @foreach ($subCriterias as $subCriteria)
-                    @if ($subCriteria->criterias_id === $criteria->id)
-                        <div class="modal fade" id="editData{{ $subCriteria->id }}" data-bs-backdrop="static"
+                    @if ($subCriteria->criterias_id === $criteria->id_criteria)
+                        <div class="modal fade" id="editData{{ $subCriteria->id_sub_criteria }}" data-bs-backdrop="static"
                             data-bs-keyboard="false" tabindex="-1"
-                            aria-labelledby="staticBackdropSubKriteriaLabel{{ $subCriteria->id }}" aria-hidden="true">
+                            aria-labelledby="staticBackdropSubKriteriaLabel{{ $subCriteria->id_sub_criteria }}" aria-hidden="true">
                             <div class="modal-dialog bg-primary">
                                 <div class="modal-content">
-                                    <form action="{{ route('data-sub-criteria.update', $subCriteria->id) }}"
+                                    <form action="{{ route('data-sub-criteria.update', $subCriteria->id_sub_criteria) }}"
                                         method="POST">
                                         @csrf
                                         @method('PUT')
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel{{ $subCriteria->id }}">
+                                            <h5 class="modal-title" id="staticBackdropLabel{{ $subCriteria->id_sub_criteria }}">
                                                 Edit Sub Kriteria : <strong>{{ $criteria->criteria_name }}</strong>
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -163,7 +163,7 @@
                                                     <div class="mb-3">
                                                         <label for="criterias_id" class="form-label">ID Kriteria</label>
                                                         <input type="number" name="criterias_id" class="form-control"
-                                                            value="{{ $criteria->id }}" readonly>
+                                                            value="{{ $criteria->id_criteria }}" readonly>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="sub_criteria_name" class="form-label">
