@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_member');
             $table->foreign('id_member')->references('id_member')->on('members');
             $table->string('member_name', 50);
+            $table->string('member_code');
+            $table->string('member_class');
             $table->decimal('result', 10, 3)->nullable();
             $table->string('period');
             $table->timestamps();

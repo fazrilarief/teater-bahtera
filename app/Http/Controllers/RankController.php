@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rank;
 use App\Models\Period;
+use App\Models\Result;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -12,7 +13,7 @@ class RankController extends Controller
     public function index()
     {
         // Filter data berdasarkan periodenya
-        $ranks = Rank::where('period', request('periode'))->with(['member'])->orderBy('result', 'DESC')->get();
+        $ranks = Result::where('period', request('periode'))->with(['member'])->orderBy('result', 'DESC')->get();
 
         // Menyimpan value filter periode
         if (request('periode')) {
@@ -30,7 +31,7 @@ class RankController extends Controller
         // Ambil nilai periode dari session
         $periode = session()->get('periode');
         // Mengirim data ke view "download PDF"
-        $ranks = Rank::where('period', $periode)->get();
+        $ranks = Result::where('period', $periode)->get();
         // Menampung tanggal
         $date = date('d/m/y');
 
