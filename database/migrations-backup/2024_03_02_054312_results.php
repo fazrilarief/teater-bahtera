@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('results', function (Blueprint $table) {
-            $table->id('id_result');
-            $table->unsignedBigInteger('id_member');
-            $table->foreign('id_member')->references('id_member')->on('members');
-            $table->string('member_name', 50);
+            $table->id();
+            $table->unsignedBigInteger('members_id');
+            $table->foreign('members_id')->references('id')->on('members');
+            $table->string('members_name');
             $table->decimal('result', 10, 3)->nullable();
             $table->string('period');
             $table->timestamps();

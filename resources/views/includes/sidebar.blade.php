@@ -68,7 +68,7 @@
                 <li class="sidebar-item {{ request()->routeIs('perankingan.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('perankingan.rank') }}">
                         <i class="align-middle" data-feather="bar-chart-2"></i>
-                        <span class="align-middle">Ranking</span>
+                        <span class="align-middle">Peringkat</span>
                     </a>
                 </li>
 
@@ -81,19 +81,19 @@
                     </a>
                 </li>
 
-                <li class="sidebar-header">Pengguna</li>
+                {{-- <li class="sidebar-header">Pengguna</li> --}}
 
-                <li class="sidebar-item {{ request()->routeIs('user.admin') ? 'active' : '' }}">
+                {{-- <li class="sidebar-item {{ request()->routeIs('user.admin') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('user.admin') }}">
                         <i class="align-middle" data-feather="user-check"></i>
                         <span class="align-middle">Admin</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-item {{ request()->routeIs('user.member') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('user.member') }}">
                         <i class="align-middle" data-feather="user-plus"></i>
-                        <span class="align-middle">Member</span>
+                        <span class="align-middle">Pengguna</span>
                     </a>
                 </li>
             @endcan

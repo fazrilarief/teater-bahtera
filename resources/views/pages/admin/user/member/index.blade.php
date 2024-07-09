@@ -81,10 +81,10 @@
                                                 <div class="col d-flex justify-content-center gap-2">
                                                     <button type="button" class="btn btn-warning btn-sm"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#editAksesMember{{ $user->id }}">
+                                                        data-bs-target="#editAksesMember{{ $user->id_user }}">
                                                         <i class="align-middle" data-feather="edit"></i>
                                                     </button>
-                                                    <form action="{{ route('user.member.destroy', $user->id) }}"
+                                                    <form action="{{ route('user.member.destroy', $user->id_user) }}"
                                                         method="POST" onsubmit="return confirm('Data akan dihapus?')">
                                                         @csrf
                                                         @method('DELETE')
@@ -158,20 +158,21 @@
                                 {{-- Modal Tambah Data Ends --}}
 
                                 {{-- Modal Edit Data --}}
-                                <div class="modal fade" id="editAksesMember{{ $user->id }}"
+                                <div class="modal fade" id="editAksesMember{{ $user->id_user }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                    aria-labelledby="staticBackdropLabel{{ $user->id }}" aria-hidden="true">
+                                    aria-labelledby="staticBackdropLabel{{ $user->id_user }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel{{ $user->id }}">
+                                                <h1 class="modal-title fs-5"
+                                                    id="staticBackdropLabel{{ $user->id_user }}">
                                                     <strong>Edit Data : {{ $user->username }}</strong>
                                                 </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('user.member.update', $user->id) }}"
+                                                <form action="{{ route('user.member.update', $user->id_user) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('PUT')

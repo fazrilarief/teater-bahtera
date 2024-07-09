@@ -51,10 +51,7 @@ class TelegramBotController extends Controller
                 'message_by' => $user,
             ];
 
-        // Membuat rekaman di database
-        $announcementHistory = AnnouncementHistories::create($data);
-
-        if ($announcementHistory) {
+        if ($data) {
             // Mengirim pesan atau dokumen ke Telegram berdasarkan kondisi
             $this->sendTelegramMessage($chatId, $message, $footer, $filePath, $fileName);
 

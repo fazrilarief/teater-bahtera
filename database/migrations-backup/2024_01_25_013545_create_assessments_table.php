@@ -12,18 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('assessments', function (Blueprint $table) {
-            $table->id('id_assessment');
+            $table->id();
             $table->unsignedBigInteger('members_id');
-            $table->foreign('members_id')->references('id_member')->on('members');
+            $table->foreign('members_id')->references('id')->on('members');
             $table->unsignedBigInteger('criterias_id');
-            $table->foreign('criterias_id')->references('id_criteria')->on('criterias');
+            $table->foreign('criterias_id')->references('id')->on('criterias');
             $table->unsignedBigInteger('sub_criterias_id');
-            $table->foreign('sub_criterias_id')->references('id_sub_criteria')->on('sub_criterias');
-            $table->string('criteria_name', 20);
-            $table->string('category', 20);
-            $table->string('sub_criteria_name', 20);
+            $table->foreign('sub_criterias_id')->references('id')->on('sub_criterias');
+            $table->string('members_name');
+            $table->string('members_code');
+            $table->string('criteria_name');
+            $table->string('category');
+            $table->string('sub_criteria_name');
             $table->integer('sub_criteria_value');
-            $table->decimal('utility_value', 10, 2)->nullable();
+            $table->decimal('utility_value', 10, 2)->nullable(); // Menambahkan kolom untuk menyimpan nilai utility
+            $table->decimal('final_score', 10, 3)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

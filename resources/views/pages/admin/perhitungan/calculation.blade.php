@@ -52,7 +52,7 @@
                                     @foreach ($criterias as $criteria)
                                         <td>
                                             @foreach ($assessments as $assessment)
-                                                @if ($assessment->members_id === $member->id && $assessment->criterias_id === $criteria->id)
+                                                @if ($assessment->members_id === $member->id_member && $assessment->criterias_id === $criteria->id_criteria)
                                                     {{ $assessment->sub_criteria_value }}
                                                 @endif
                                             @endforeach
@@ -187,7 +187,7 @@
                                     @foreach ($criterias as $criteria)
                                         <td class="fw-bold">
                                             @foreach ($assessments as $assessment)
-                                                @if ($assessment->members_id === $member->id && $assessment->criterias_id === $criteria->id)
+                                                @if ($assessment->members_id === $member->id_member && $assessment->criterias_id === $criteria->id_criteria)
                                                     {{ $assessment->utility_value ?? 'N/A' }}
                                                 @endif
                                             @endforeach

@@ -94,14 +94,14 @@
                                         <div class="row">
                                             <div class="col d-flex justify-content-end gap-2">
                                                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#lihatData{{ $member->id }}">
+                                                    data-bs-target="#lihatData{{ $member->id_member }}">
                                                     <i class="align-middle" data-feather="eye"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#editData{{ $member->id }}">
+                                                    data-bs-target="#editData{{ $member->id_member }}">
                                                     <i class="align-middle" data-feather="edit"></i>
                                                 </button>
-                                                <form action="{{ route('data-anggota.destroy', $member->id) }}"
+                                                <form action="{{ route('data-anggota.destroy', $member->id_member) }}"
                                                     method="POST" onsubmit="return confirm('Data akan dihapus?')">
                                                     @csrf
                                                     @method('DELETE')
@@ -115,13 +115,13 @@
                                 </tr>
 
                                 {{-- Modal Lihat Data --}}
-                                <div class="modal fade" id="lihatData{{ $member->id }}" data-bs-backdrop="static"
+                                <div class="modal fade" id="lihatData{{ $member->id_member }}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1"
-                                    aria-labelledby="staticBackdropLabel{{ $member->id }}" aria-hidden="true">
+                                    aria-labelledby="staticBackdropLabel{{ $member->id_member }}" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel{{ $member->id }}">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel{{ $member->id_member }}">
                                                     <strong>Lihat Data :</strong> {{ $member->member_name }}
                                                 </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -202,20 +202,20 @@
                                 {{-- Modal Lihat Data Ends --}}
 
                                 {{-- Modal Edit Data --}}
-                                <div class="modal fade" id="editData{{ $member->id }}" data-bs-backdrop="static"
+                                <div class="modal fade" id="editData{{ $member->id_member }}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1"
-                                    aria-labelledby="staticBackdropLabel{{ $member->id }}" aria-hidden="true">
+                                    aria-labelledby="staticBackdropLabel{{ $member->id_member }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel{{ $member->id }}">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel{{ $member->id_member }}">
                                                     <strong>Edit Data :</strong> {{ $member->name }}
                                                 </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('data-anggota.update', $member->id) }}"
+                                                <form action="{{ route('data-anggota.update', $member->id_member) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('PUT')

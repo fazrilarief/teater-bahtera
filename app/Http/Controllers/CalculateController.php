@@ -56,7 +56,7 @@ class CalculateController extends Controller
 
                 // Pastikan $xjmax dan $xjmin tidak null, dan $xjmin tidak sama dengan $xij
                 if ($xjmax !== null && $xjmin !== null) {
-                    // Menyimpan nilai utility ke dalam tabel assessments
+                    // Menghitung nilai utility
                     if ($category === 'Benefit') {
                         $utility = ($xij - $xjmin) / ($xjmax - $xjmin);
                     } else {
@@ -89,7 +89,7 @@ class CalculateController extends Controller
 
             foreach ($criterias as $criteria) {
                 // Mendapatkan nilai Xuc dari tabel Assessments
-                $xuc = Assessment::where('members_id', $member->id)
+                $xuc = Assessment::where('members_id', $member->id_member)
                     ->where('criteria_name', $criteria->criteria_name)
                     ->value('utility_value');
 
@@ -100,18 +100,17 @@ class CalculateController extends Controller
                 $nilaiC = $xuc * $xnc;
 
                 // Menambahkan nilaiC ke nilaiAkhir
-                $nilaiAkhir += $nilaiC * $xnc; // Menyesuaikan perhitungan
-
+                $nilaiAkhir += $nilaiC * $xnc;
             }
 
             // Mencari atau membuat objek Result berdasarkan members_id
             $result = Result::firstOrNew([
-                'members_id' => $member->id,
+                'id_member' => $member->id_member,
                 'period' => $period,
             ]);
 
             // Menyimpan nilaiAkhir ke dalam objek Result
-            $result->members_name = $member->member_name;
+            $result->member_name = $member->member_name;
             $result->result = $nilaiAkhir;
 
             // Menyimpan objek Result ke dalam tabel Results
@@ -123,8 +122,8 @@ class CalculateController extends Controller
             // Menyimpan hasil result ke table "ranks"
             if ($result->save()) {
                 $rank = new Rank();
-                $rank->member_id = $result->members_id;
-                $rank->member_name = $result->members_name;
+                $rank->member_id = $result->id_member;
+                $rank->member_name = $result->member_name;
                 $rank->member_code = $member->member_code;
                 $rank->member_class = $memberClass;
                 $rank->result = $result->result;

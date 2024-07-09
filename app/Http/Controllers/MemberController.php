@@ -28,6 +28,7 @@ class MemberController extends Controller
      */
     public function create()
     {
+        // Mengarahkan ke halaman form data anggota
         return view('pages.admin.data-anggota.form');
     }
 
@@ -36,12 +37,12 @@ class MemberController extends Controller
      */
     public function store(MemberRequest $request)
     {
-        // validasi data berdasrkan FormRequest
+        // validasi data berdasrkan Form Request
         $validated = $request->validated();
 
-        // Generate Member Code
-        $lastMember = Member::orderBy('id', 'desc')->first();
-        $validated['member_code'] = 'A' . ($lastMember ? ($lastMember->id + 1) : 1);
+        // Bikin Member Code
+        $lastMember = Member::latest('id_member')->first();
+        $validated['member_code'] = 'A' . ($lastMember ? ($lastMember->id_member + 1) : 1);
 
         // Passing data ke database
         $member = Member::create($validated);
@@ -76,6 +77,7 @@ class MemberController extends Controller
      */
     public function update(MemberRequest $request, $id)
     {
+        // Validasi inputan user dengan Form Request yang sudah dibuat
         $validated = $request->validated();
 
         // Temukan member berdasarkan ID

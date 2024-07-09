@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sub_criterias', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_sub_criteria');
             $table->string('sub_criteria_name');
             $table->string('sub_criteria_value');
             $table->unsignedBigInteger('criterias_id');
-            $table->foreign('criterias_id')->references('id')->on('criterias');
+            $table->foreign('criterias_id')->references('id_criteria')->on('criterias');
             $table->softDeletes();
             $table->timestamps();
         });

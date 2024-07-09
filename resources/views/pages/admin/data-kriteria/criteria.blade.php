@@ -76,10 +76,10 @@
                                         <div class="row">
                                             <div class="col d-flex justify-content-end gap-2">
                                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                    data-bs-target="#editData{{ $criteria->id }}">
+                                                    data-bs-target="#editData{{ $criteria->id_criteria }}">
                                                     <i class="align-middle" data-feather="edit"></i>
                                                 </button>
-                                                <form action="{{ route('data-kriteria.destroy', $criteria->id) }}"
+                                                <form action="{{ route('data-kriteria.destroy', $criteria->id_criteria) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -94,18 +94,19 @@
                                 </tr>
 
                                 {{-- Modal Edit Data --}}
-                                <div class="modal fade" id="editData{{ $criteria->id }}" data-bs-backdrop="static"
+                                <div class="modal fade" id="editData{{ $criteria->id_criteria }}" data-bs-backdrop="static"
                                     data-bs-keyboard="false" tabindex="-1"
-                                    aria-labelledby="staticBackdropLabel{{ $criteria->id }}" aria-hidden="true">
+                                    aria-labelledby="staticBackdropLabel{{ $criteria->id_criteria }}" aria-hidden="true">
                                     <div class="modal-dialog bg-primary">
                                         <div class="modal-content">
-                                            <form action="{{ route('data-kriteria.update', $criteria->id) }}"
+                                            <form action="{{ route('data-kriteria.update', $criteria->id_criteria) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="staticBackdropLabel{{ $criteria->id }}">
-                                                        <strong>Edit : </strong>{{ $criteria->name }}
+                                                    <h5 class="modal-title"
+                                                        id="staticBackdropLabel{{ $criteria->id_criteria }}">
+                                                        <strong>Edit : </strong>{{ $criteria->criteria_name }}
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>

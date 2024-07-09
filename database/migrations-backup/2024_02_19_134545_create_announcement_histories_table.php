@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('periods', function (Blueprint $table) {
-            $table->id('id_period');
-            $table->string('periode', 50);
+        Schema::create('announcement_histories', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('chat_id');
+            $table->longText('chat');
+            $table->string('document')->nullable();
+            $table->string('message_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('announcement_histories');
     }
 };

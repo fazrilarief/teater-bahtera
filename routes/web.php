@@ -79,7 +79,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('tools/create-announcement/send-message', 'TelegramBotController@sendMessage')->name('sendMessage');
         });
 
-        // Member Access
+        // Users
         Route::namespace('App\Http\Controllers\User')->group(function () {
             Route::get('member', 'MemberController@index')->name('user.member');
             Route::post('member/create', 'MemberController@store')->name('user.member.store');

@@ -9,15 +9,16 @@ class Result extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_result';
     protected $fillable = [
-        'members_id',
-        'members_name',
+        'id_member',
+        'member_name',
         'result',
         'period',
     ];
 
     public function member()
     {
-        return $this->belongsTo(Member::class, 'members_id');
+        return $this->belongsTo(Member::class, 'members_id', 'id_member');
     }
 }

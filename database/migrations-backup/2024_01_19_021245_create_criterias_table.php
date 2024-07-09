@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('periods', function (Blueprint $table) {
-            $table->id('id_period');
-            $table->string('periode', 50);
+        Schema::create('criterias', function (Blueprint $table) {
+            $table->id();
+            $table->string('criteria_code')->unique();
+            $table->string('criteria_name', 60);
+            $table->integer('criteria_value');
+            $table->double('normalisasi');
+            $table->enum('category', ['Benefit', 'Cost']);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('criterias');
     }
 };
