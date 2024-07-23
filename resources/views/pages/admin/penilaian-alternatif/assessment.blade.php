@@ -80,24 +80,33 @@
                                                     data-bs-target="#nilaiAlternatif{{ $member->id_member }}">
                                                     <i class="align-middle" data-feather="edit"></i> Nilai
                                                 </button>
-                                                <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal"
+                                                {{-- <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal"
                                                     data-bs-target="#editNilaiAlternatif{{ $member->id_member }}">
                                                     <i class="align-middle" data-feather="eye"></i> Edit
-                                                </button>
+                                                </button> --}}
+                                                <form action="{{ route('assessment.destroy', $member->id_member) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="align-middle" data-feather="trash"></i> Hapus
+                                                    </button>
+                                                </form>
                                             </div>
                                     </td>
                                 </tr>
 
                                 {{-- Modal Nilai Alterntaif --}}
-                                <div class="modal fade" id="nilaiAlternatif{{ $member->id_member }}" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1"
+                                <div class="modal fade" id="nilaiAlternatif{{ $member->id_member }}"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                     aria-labelledby="nilaiAlternatifLabel{{ $member->id_member }}" aria-hidden="true">
                                     <div class="modal-dialog bg-primary">
                                         <div class="modal-content">
                                             <form action="{{ route('assessment.store') }}" method="POST">
                                                 @csrf
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="nilaiAlternatifLabel{{ $member->id_member }}">
+                                                    <h5 class="modal-title"
+                                                        id="nilaiAlternatifLabel{{ $member->id_member }}">
                                                         Nilai Anggota : <strong>{{ $member->member_name }}</strong>
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -124,11 +133,15 @@
                                                                         <option selected disabled>.....</option>
                                                                         @php
                                                                             $res = $subCriterias
-                                                                                ->where('criterias_id', $criteria->id_criteria)
+                                                                                ->where(
+                                                                                    'criterias_id',
+                                                                                    $criteria->id_criteria,
+                                                                                )
                                                                                 ->all();
                                                                         @endphp
                                                                         @foreach ($res as $subCriteria)
-                                                                            <option value="{{ $subCriteria->id_sub_criteria }}">
+                                                                            <option
+                                                                                value="{{ $subCriteria->id_sub_criteria }}">
                                                                                 {{ $subCriteria->sub_criteria_name . ' | ' . ' Nilai : ' . $subCriteria->sub_criteria_value }}
                                                                             </option>
                                                                         @endforeach
@@ -148,12 +161,13 @@
                                 {{-- Modal Nilai Alterntaif Ends --}}
 
                                 {{-- Modal Edit Nilai Alterntaif --}}
-                                <div class="modal fade" id="editNilaiAlternatif{{ $member->id_member }}"
+                                {{-- <div class="modal fade" id="editNilaiAlternatif{{ $member->id_member }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                     aria-labelledby="editNilaiAlternatifLabel{{ $member->id_member }}" aria-hidden="true">
                                     <div class="modal-dialog bg-primary">
                                         <div class="modal-content">
-                                            <form action="{{ route('assessment.update', ['assessment' => $member->id_member]) }}"
+                                            <form
+                                                action="{{ route('assessment.update', ['assessment' => $member->id_member]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('PUT')
@@ -181,7 +195,8 @@
                                                                         class="form-select">
                                                                         <option value="" disabled>.....</option>
                                                                         @foreach ($subCriterias->where('criterias_id', $criteria->id_criteria) as $subCriteria)
-                                                                            <option value="{{ $subCriteria->id_sub_criteria }}"
+                                                                            <option
+                                                                                value="{{ $subCriteria->id_sub_criteria }}"
                                                                                 @foreach ($groupedAssessments[$member->id_member] ?? [] as $assessment)
                                                                                     {{ old('criteria.' . $criteria->id_criteria, $assessment->sub_criterias_id ?? '') == $subCriteria->id_sub_criteria ? 'selected' : '' }} @endforeach>
                                                                                 {{ $subCriteria->sub_criteria_name }}
@@ -199,7 +214,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- Modal Edit Nilai Alterntaif Ends --}}
                             @endforeach
                         </tbody>

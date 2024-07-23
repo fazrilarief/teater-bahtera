@@ -109,27 +109,31 @@ class CalculateController extends Controller
                 'period' => $period,
             ]);
 
+            $memberClass = $member->grade . " " . $member->major . " " . $member->class_code;
+
             // Menyimpan nilaiAkhir ke dalam objek Result
             $result->member_name = $member->member_name;
+            $result->member_code = $member->member_code;
+            $result->member_class = $memberClass;
             $result->result = $nilaiAkhir;
 
             // Menyimpan objek Result ke dalam tabel Results
             $result->save();
 
             // Menyimpan kelas member
-            $memberClass = $member->grade . " " . $member->major . " " . $member->class_code;
+            // $memberClass = $member->grade . " " . $member->major . " " . $member->class_code;
 
             // Menyimpan hasil result ke table "ranks"
-            if ($result->save()) {
-                $rank = new Rank();
-                $rank->member_id = $result->id_member;
-                $rank->member_name = $result->member_name;
-                $rank->member_code = $member->member_code;
-                $rank->member_class = $memberClass;
-                $rank->result = $result->result;
-                $rank->period = $result->period;
-                $rank->save();
-            }
+            // if ($result->save()) {
+            //     $rank = new Rank();
+            //     $rank->member_id = $result->id_member;
+            //     $rank->member_name = $result->member_name;
+            //     $rank->member_code = $member->member_code;
+            //     $rank->member_class = $memberClass;
+            //     $rank->result = $result->result;
+            //     $rank->period = $result->period;
+            //     $rank->save();
+            // }
         }
 
         return redirect()->back()->with('success', 'Nilai akhir berhasil dihitung.');

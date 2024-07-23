@@ -117,42 +117,54 @@ class AssessmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validasi input jika diperlukan
-        $request->validate([
-            'member_id' => 'required',
-            'criteria' => 'required|array',
-            // Tambahkan aturan validasi lainnya sesuai kebutuhan
-        ]);
+        // // Validasi input jika diperlukan
+        // $request->validate([
+        //     'member_id' => 'required',
+        //     'criteria' => 'required|array',
+        // ]);
 
-        // Hapus nilai penilaian yang sudah ada untuk anggota tersebut
-        Assessment::where('members_id', $request->member_id)->delete();
+        // // Hapus nilai penilaian yang sudah ada untuk anggota tersebut
+        // Assessment::where('members_id', $request->member_id)->delete();
 
-        // Looping untuk menyimpan nilai berdasarkan kriteria dan sub-kriteria yang dipilih
-        foreach ($request->input('criteria') as $criteriaId => $subCriteriaId) {
-            // Dapatkan nama kriteria dan sub-kriteria
-            $criteriaName = Criteria::find($criteriaId)->criteria_name;
-            $subCriteriaName = SubCriteria::find($subCriteriaId)->sub_criteria_name;
+        // // Looping untuk menyimpan nilai berdasarkan kriteria dan sub-kriteria yang dipilih
+        // foreach ($request->input('criteria') as $criteriaId => $subCriteriaId) {
+        //     // Dapatkan nama kriteria dan sub-kriteria
+        //     $criteriaName = Criteria::find($criteriaId)->criteria_name;
+        //     $subCriteriaName = SubCriteria::find($subCriteriaId)->sub_criteria_name;
 
-            // Simpan nilai ke database
-            $assessment = new Assessment([
-                'members_id' => $request->input('member_id'),
-                'criterias_id' => $criteriaId,
-                'sub_criterias_id' => $subCriteriaId,
-                'criteria_name' => $criteriaName,
-                'sub_criteria_name' => $subCriteriaName,
-            ]);
-            $assessment->save();
-        }
+        //     // Simpan nilai ke database
+        //     $assessment = new Assessment([
+        //         'members_id' => $request->input('member_id'),
+        //         'criterias_id' => $criteriaId,
+        //         'sub_criterias_id' => $subCriteriaId,
+        //         'criteria_name' => $criteriaName,
+        //         'sub_criteria_name' => $subCriteriaName,
+        //     ]);
+        //     $assessment->save();
+        // }
 
-        // Redirect atau berikan respons sesuai kebutuhan
-        return redirect()->back()->with('success', 'Data berhasil diperbarui');
+        // // Redirect atau berikan respons sesuai kebutuhan
+        // return redirect()->back()->with('success', 'Data berhasil diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(String $id_member)
     {
-        //
+        // Cari semua assessment berdasarkan members_id
+        $assessments = Assessment::where('members_id', $id_member)->get();
+
+        if ($assessments->isNotEmpty()) {
+            foreach ($assessments as $assessment) {
+                $assessment->delete();
+            }
+
+            Alert::warning('Warning', 'Berhasil Menghapus Data');
+            return redirect()->back();
+        } else {
+            Alert::error('Error', 'Data tidak ditemukan');
+            return redirect()->back();
+        }
     }
 }
