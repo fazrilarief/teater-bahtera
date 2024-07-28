@@ -21,7 +21,7 @@ class SubCriteriaSeeder extends Seeder
                 'sub_criteria_value' => 30,
             ],
             [
-                'sub_criteria_name' => 'Kurang Lantang',
+                'sub_criteria_name' => 'Cukup Lantang',
                 'sub_criteria_value' => 50,
             ],
             [
@@ -85,7 +85,7 @@ class SubCriteriaSeeder extends Seeder
                 'sub_criteria_value' => 30,
             ],
             [
-                'sub_criteria_name' => 'Kurang Jelas',
+                'sub_criteria_name' => 'Cukup Jelas',
                 'sub_criteria_value' => 50,
             ],
             [
