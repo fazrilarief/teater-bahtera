@@ -197,16 +197,6 @@
                                                                 <label for="password" class="form-label"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     data-bs-title="Abaikan jika tidak mengubah password">
-                                                                    Old Password
-                                                                    <i class="align-middle" data-feather="info"></i>
-                                                                </label>
-                                                                <input type="password" id="password" name="password"
-                                                                    class="form-control">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="password" class="form-label"
-                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                    data-bs-title="Abaikan jika tidak mengubah password">
                                                                     New Password <i class="align-middle"
                                                                         data-feather="info"></i>
                                                                 </label>

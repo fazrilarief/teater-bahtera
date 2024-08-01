@@ -22,7 +22,7 @@ class CriteriaSeeder extends Seeder
             ],
             [
                 'criteria_code' => 'C2',
-                'criteria_name' => 'Kehadiran',
+                'criteria_name' => 'Absen',
                 'criteria_value' => 25,
                 'category' => 'Cost',
             ],

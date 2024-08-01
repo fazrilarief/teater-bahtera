@@ -10,6 +10,7 @@
     new DataTable('#myTable2');
     new DataTable('#myTable3');
     new DataTable('#myTable4');
+    new DataTable('#myTable5');
 </script>
 
 {{-- Tooltip --}}
@@ -23,7 +24,7 @@
 {{-- Calendar --}}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
+        var date = new Date(Date.now());
         var defaultDate =
             date.getUTCFullYear() +
             "-" +

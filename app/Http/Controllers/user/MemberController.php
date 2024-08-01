@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Validation\Rules\Password;
 
 class MemberController extends Controller
 {
@@ -34,9 +35,10 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'username' => 'required|alpha_dash|unique:App\Models\User,username',
-            'email' => 'required|email|unique:App\Models\User,email|min:8|max:50',
-            'role' => 'required|in:admin,member',
+            'username' => 'alpha_dash',
+            'email' => 'email|min:8|max:50',
+            'password' => [Password::min(8)->mixedCase()->numbers()],
+            'role' => 'in:admin,member',
         ]);
 
         $member = User::findOrFail($id);
@@ -44,6 +46,7 @@ class MemberController extends Controller
         $member->update([
             'username' => $request->input('username'),
             'email' => $request->input('email'),
+            'password' => $request->input('password'),
             'role' => $request->input('role'),
         ]);
 

@@ -70,11 +70,11 @@
 
             <div class="row">
                 <div class="col-12 col-lg-8 col-xxl-9 d-flex">
-                    <div class="card flex-fill">
+                    <div class="card flex-fill p-2">
                         <div class="card-header">
                             <h5 class="card-title mb-0">Penilaian Periode Terakhir</h5>
                         </div>
-                        <table class="table table-hover my-0 text-center">
+                        <table id="myTable5" class="table table-hover my-0 text-center">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -89,8 +89,8 @@
                                 @foreach ($resultPeriod as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td class="d-none d-xl-table-cell">{{ $item->kode_alternatif }}</td>
-                                        <td class="d-none d-xl-table-cell text-start">{{ $item->members_name }}</td>
+                                        <td class="d-none d-xl-table-cell">{{ $item->member_code }}</td>
+                                        <td class="d-none d-xl-table-cell text-start">{{ $item->member_name }}</td>
                                         <td><span class="badge bg-success">{{ $item->result }}</span></td>
                                         <td><span class="badge bg-primary">{{ $loop->iteration }}</span></td>
                                         <td><span class="badge bg-warning">{{ $item->period }}</span></td>
@@ -100,13 +100,13 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-                    <div class="card flex-fill ">
+                <div class="col-12 col-md-6 col-xxl-3">
+                    <div class="card ">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Calendar</h5>
+                            <h5 class="card-title mb-0">Kalender</h5>
                         </div>
-                        <div class="card-body d-flex">
-                            <div class="align-self-center w-100">
+                        <div class="card-body">
+                            <div class="">
                                 <div class="chart">
                                     <div id="datetimepicker-dashboard"></div>
                                 </div>
